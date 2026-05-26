@@ -3,8 +3,6 @@ package me.FenrisFox86.ancientcores.core.init;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.*;
 import me.FenrisFox86.ancientcores.common.items.core.*;
-import me.FenrisFox86.ancientcores.common.items.*;
-import me.FenrisFox86.ancientcores.common.items.core.*;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import me.FenrisFox86.ancientcores.core.util.tools.ModFoods;
 import me.FenrisFox86.ancientcores.core.util.tools.ModItemTier;
@@ -84,7 +82,7 @@ public class ItemInit {
         return MAP;
     }
 
-    public static Map<String, RegistryObject<Item>> addCoreSet(AbstractCoreItem core) {
+    public static Map<String, RegistryObject<Item>> addCoreSet(CoreItem core) {
         Map<String, RegistryObject<Item>> MAP = new HashMap() {};
 
         MAP.put("CORE", addItem(core.name, core));
@@ -136,6 +134,22 @@ public class ItemInit {
         CORE_VESSEL_DAGGER = addItem("core_vessel_dagger", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
         CORE_VESSEL_BROADSWORD = addItem("core_vessel_broadsword", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
 
+        DYNAMO_CORE = addItem("dynamo_core", new DynamoCore()),
+        DYNAMO_HELMET = addItem("dynamo_core_helmet", new DynamoCoreHelmet()),
+        DYNAMO_CHESTPLATE = addItem("dynamo_core_chestplate", new DynamoCoreChestplate()),
+        DYNAMO_LEGGINGS = addItem("dynamo_core_leggings", new DynamoCoreLeggings()),
+        DYNAMO_BOOTS = addItem("dynamo_core_boots", new DynamoCoreBoots()),
+        /*DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword((CoreItem)DYNAMO_CORE.get(), 2, -1.0F)),
+        DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe((CoreItem)DYNAMO_CORE.get(), 3, -2.0F)),
+        DYNAMO_PICKAXE = addItem("dynamo_core_pickaxe", new CorePickaxe((CoreItem)DYNAMO_CORE.get(), 2, -2.0F)),
+        DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe((CoreItem)DYNAMO_CORE.get(), 0, -2.0F)),
+        DYNAMO_SHOVEL = addItem("dynamo_core_shovel", new CoreShovel((CoreItem)DYNAMO_CORE.get(), 1, -2.0F)),
+        DYNAMO_KATANA = addItem("dynamo_core_katana", new CoreKatana((CoreItem)DYNAMO_CORE.get(), 2, -1.5F)),
+        DYNAMO_HAMMER = addItem("dynamo_core_hammer", new CoreHammer((CoreItem)DYNAMO_CORE.get(), 4, -1.5F)),
+        DYNAMO_BROADSWORD = addItem("dynamo_core_broadsword", new CoreBroadsword((CoreItem)DYNAMO_CORE.get(), 6, -3.0F)),
+        DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger((CoreItem)DYNAMO_CORE.get(), 0, -0.0F)),
+        */
+
         BRONZE_INGOT = addItem("bronze_ingot"),
         BRONZE_NUGGET = addItem("bronze_nugget"),
         VESSEL_BRONZE_INGOT = addItem("vessel_bronze_ingot"),
@@ -175,6 +189,6 @@ public class ItemInit {
         DIAMOND_TOOLSET = completeToolSet("diamond", ItemTier.DIAMOND, null),
         NETHERITE_TOOLSET = completeToolSet("netherite", ItemTier.NETHERITE, null),
 
-        DYNAMO_CORE_SET = addCoreSet(new DynamoCore()),
+        // DYNAMO_CORE_SET = addCoreSet(new DynamoCore())addItem(core.name+"_boots", new CoreArmorItem(core, EquipmentSlotType.FEET)));
         MAGMA_CORE_SET = addCoreSet(new MagmaCore());
 }

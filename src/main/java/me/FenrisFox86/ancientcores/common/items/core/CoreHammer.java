@@ -19,9 +19,9 @@ import java.util.List;
 public class CoreHammer extends HammerItem implements ICoreItem {
 
     public final String name;
-    public final AbstractCoreItem core;
+    public final CoreItem core;
 
-    public CoreHammer(AbstractCoreItem core, int attackDamageIn, float attackSpeedIn) {
+    public CoreHammer(CoreItem core, int attackDamageIn, float attackSpeedIn) {
         super(core.itemTier, attackDamageIn, attackSpeedIn, new Properties().tab(AncientCores.MOD_TAB));
         this.name = core.name + "_hammer";
         this.core = core;
@@ -34,7 +34,7 @@ public class CoreHammer extends HammerItem implements ICoreItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        AbstractCoreItem.appendHoverText(tooltip, this.core.name);
+        CoreItem.appendHoverText(tooltip, this.core.name);
     }
 
     @Nonnull
@@ -59,7 +59,7 @@ public class CoreHammer extends HammerItem implements ICoreItem {
     }
 
     @Override
-    public AbstractCoreItem getCore() {
+    public CoreItem getCore() {
         return core;
     }
 }

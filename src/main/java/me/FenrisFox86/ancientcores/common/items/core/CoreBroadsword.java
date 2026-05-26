@@ -17,9 +17,9 @@ import java.util.List;
 public class CoreBroadsword extends BroadswordItem implements ICoreItem {
 
     public final String name;
-    public final AbstractCoreItem core;
+    public final CoreItem core;
 
-    public CoreBroadsword(AbstractCoreItem core, int attackDamageIn, float attackSpeedIn) {
+    public CoreBroadsword(CoreItem core, int attackDamageIn, float attackSpeedIn) {
         super(core.itemTier, attackDamageIn, attackSpeedIn, new Properties().tab(AncientCores.MOD_TAB));
         this.name = core.name + "_broadsword";
         this.core = core;
@@ -32,7 +32,7 @@ public class CoreBroadsword extends BroadswordItem implements ICoreItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        AbstractCoreItem.appendPassiveHoverText(tooltip, core.name);
+        CoreItem.appendPassiveHoverText(tooltip, core.name);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class CoreBroadsword extends BroadswordItem implements ICoreItem {
     }
 
     @Override
-    public AbstractCoreItem getCore() {
+    public CoreItem getCore() {
         return core;
     }
 }

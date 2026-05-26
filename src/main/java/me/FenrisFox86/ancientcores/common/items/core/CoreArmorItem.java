@@ -19,10 +19,10 @@ import java.util.List;
 public class CoreArmorItem extends ArmorItem implements ICoreItem {
 
     public final String name;
-    public final AbstractCoreItem core;
+    public final CoreItem core;
     public final EquipmentSlotType equipmentSlotType;
 
-    public CoreArmorItem(AbstractCoreItem core, EquipmentSlotType type) {
+    public CoreArmorItem(CoreItem core, EquipmentSlotType type) {
         super(core.armorMaterial, type, new Properties().tab(AncientCores.MOD_TAB));
         String pieceName = type.equals(EquipmentSlotType.HEAD) ? "_helmet": type.equals(EquipmentSlotType.CHEST) ? "_chestplate":
                 type.equals(EquipmentSlotType.LEGS) ? "_leggings": "_boots";
@@ -45,11 +45,11 @@ public class CoreArmorItem extends ArmorItem implements ICoreItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        AbstractCoreItem.appendArmorHoverText(tooltip, core.name, this.name);
+        CoreItem.appendArmorHoverText(tooltip, core.name, this.name);
     }
 
     @Override
-    public AbstractCoreItem getCore() {
+    public CoreItem getCore() {
         return this.core;
     }
 

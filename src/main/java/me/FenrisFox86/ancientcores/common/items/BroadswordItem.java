@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 
 public class BroadswordItem extends SingleHandedSwordItem {
 
-    public BroadswordItem(IItemTier tier, int attackDamageIn, float attackMOVEMENT_SPEEDIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackMOVEMENT_SPEEDIn, builderIn);
+    public BroadswordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
+        super(tier, attackDamageIn, attackSpeedIn, builderIn);
     }
 
     public UseAction getUseAnimation(ItemStack p_77661_1_) {

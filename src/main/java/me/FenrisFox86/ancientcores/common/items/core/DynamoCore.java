@@ -6,9 +6,6 @@ import me.FenrisFox86.ancientcores.core.util.tools.ModItemTier;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -22,7 +19,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,10 +27,9 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Mod.EventBusSubscriber
-public class DynamoCore extends AbstractCoreItem {
+public class DynamoCore extends CoreItem {
 
     public DynamoCore() {
         super("dynamo_core", new Properties().tab(AncientCores.MOD_TAB).durability(256));
@@ -46,7 +41,7 @@ public class DynamoCore extends AbstractCoreItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        AbstractCoreItem.appendHoverText(tooltip, name);
+        CoreItem.appendHoverText(tooltip, name);
     }
 
     @Override
@@ -96,62 +91,24 @@ public class DynamoCore extends AbstractCoreItem {
         }
     }
 
-    @SubscribeEvent
-    public static void onLivingArmorEquip(LivingEquipmentChangeEvent event) {
-        /*if (!event.getEntityLiving().level.isClientSide() && event.getEntityLiving() instanceof PlayerEntity) {
-            LivingEntity living = event.getEntityLiving();
-
-            ModifiableAttributeInstance attackSpeedAttribute = living.getAttribute(Attributes.ATTACK_SPEED);
-            if (attackSpeedAttribute != null) {
-                for (AttributeModifier modifier : attackSpeedAttribute.getModifiers()) {
-                    if (modifier.getId().equals(UUID.fromString("76FA8B01-C328-F9D4-9AB2-1C2D7A871A31"))) {
-                        attackSpeedAttribute.removeModifier(modifier);
-                    }
-                }
-            }
-
-            ModifiableAttributeInstance knockbackAttribute = living.getAttribute(Attributes.ATTACK_KNOCKBACK);
-            if (knockbackAttribute != null) {
-                for (AttributeModifier modifier : knockbackAttribute.getModifiers()) {
-                    if (modifier.getId().equals(UUID.fromString("76FA8B01-C328-F9D4-9AB2-1C2D7A871A3F"))) {
-                        knockbackAttribute.removeModifier(modifier);
-                    }
-                }
-            }
-
-            ModifiableAttributeInstance speedAttribute = living.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (speedAttribute != null) {
-                for (AttributeModifier modifier : speedAttribute.getModifiers()) {
-                    if (modifier.getId().equals(UUID.fromString("76FA8B01-C328-F9D4-9AB2-1C2D7A871A32"))) {
-                        speedAttribute.removeModifier(modifier);
-                    }
-                }
-            }
-
-            for (ItemStack stack : living.getArmorSlots()) {
-                if (stack.getItem() instanceof CoreArmorItem && ((CoreArmorItem)stack.getItem()).core instanceof DynamoCore) {
-                    if (((CoreArmorItem)stack.getItem()).equipmentSlotType.equals(EquipmentSlotType.HEAD)) {
-                        attackSpeedAttribute.addTransientModifier(
-                                new AttributeModifier(UUID.fromString("76FA8B01-C328-F9D4-9AB2-1C2D7A871A31"),
-                                        "dynamo_helmet", 3.0f, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                    }
-                    if (((CoreArmorItem)stack.getItem()).equipmentSlotType.equals(EquipmentSlotType.CHEST)) {
-                        knockbackAttribute.addTransientModifier(
-                                new AttributeModifier(UUID.fromString("76FA8B01-C328-F9D4-9AB2-1C2D7A871A3F"),
-                                        "dynamo_chestplate",3.0f, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                    }
-                    if (((CoreArmorItem)stack.getItem()).equipmentSlotType.equals(EquipmentSlotType.LEGS)) {
-                        speedAttribute.addTransientModifier(
-                                new AttributeModifier(UUID.fromString("76FA8B01-C328-F9D4-9AB2-1C2D7A871A32"),
-                                        "dynamo_leggings",2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                    }
-                }
-            }
-        }*/
+    public static void dynamoItemTick (
+            @Nonnull ItemStack stack,
+            @Nonnull World worldIn,
+            @Nonnull Entity entityIn,
+            int itemSlot,
+            boolean isSelected)
+    {
+        if (worldIn.getDayTime() % 20 > 0) return;
+        if (!entityIn.isSprinting()) return;
+        if (!(entityIn instanceof LivingEntity)) return;
+        stack.hurtAndBreak(-8, (LivingEntity) entityIn, p ->
+                p.broadcastBreakEvent(Objects.requireNonNull(stack.getEquipmentSlot())));
     }
+
 
     @SubscribeEvent
     public static void OnLivingJump(LivingEvent.LivingJumpEvent event) {
+        // TODO: replace with attribute modifier
         LivingEntity living = event.getEntityLiving();
         Item boots = living.getItemBySlot(EquipmentSlotType.FEET).getItem();
 
@@ -164,6 +121,7 @@ public class DynamoCore extends AbstractCoreItem {
 
     @SubscribeEvent
     public static void OnLivingFall(LivingFallEvent event) {
+        // TODO: replace with attribute modifier
         LivingEntity living = event.getEntityLiving();
         Item boots = living.getItemBySlot(EquipmentSlotType.FEET).getItem();
 

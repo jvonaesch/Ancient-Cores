@@ -21,18 +21,18 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
-public abstract class AbstractCoreItem extends Item{
+public abstract class CoreItem extends Item{
 
     public IItemTier itemTier;
     public IArmorMaterial armorMaterial;
     public String name;
 
-    public AbstractCoreItem(String name, Properties properties) {
+    public CoreItem(String name, Properties properties) {
         super(properties);
         this.name = name;
     }
 
-    public static boolean isCoreItem(ItemStack stack, AbstractCoreItem core) {
+    public static boolean isCoreItem(ItemStack stack, CoreItem core) {
         return stack.getItem() instanceof ICoreItem && ((ICoreItem) stack.getItem()).getCore().equals(core);
     }
 

@@ -19,9 +19,9 @@ import java.util.List;
 public class CoreShovel extends ShovelItem implements ICoreItem {
 
     public final String name;
-    public final AbstractCoreItem core;
+    public final CoreItem core;
 
-    public CoreShovel(AbstractCoreItem core, int attackDamageIn, float attackSpeedIn) {
+    public CoreShovel(CoreItem core, int attackDamageIn, float attackSpeedIn) {
         super(core.itemTier, attackDamageIn, attackSpeedIn, new Properties().tab(AncientCores.MOD_TAB));
         this.name = core.name + "_shovel";
         this.core = core;
@@ -34,7 +34,7 @@ public class CoreShovel extends ShovelItem implements ICoreItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        AbstractCoreItem.appendHoverText(tooltip, this.core.name);
+        CoreItem.appendHoverText(tooltip, this.core.name);
     }
 
     @Nonnull
@@ -59,7 +59,7 @@ public class CoreShovel extends ShovelItem implements ICoreItem {
     }
 
     @Override
-    public AbstractCoreItem getCore() {
+    public CoreItem getCore() {
         return core;
     }
 }

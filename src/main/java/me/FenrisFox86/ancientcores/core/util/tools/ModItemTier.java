@@ -33,7 +33,7 @@ public enum ModItemTier implements IItemTier {
     }),
 
     DYNAMO_CORE(5, 2604, 10.0F, 28.0F, 48, () -> {
-        return Ingredient.of(ItemInit.DYNAMO_CORE_SET.get("CORE").get());
+        return Ingredient.of(ItemInit.DYNAMO_CORE.get());
     }),
 
     MAGMA_CORE(5, 2604, 10.0F, 28.0F, 48, () -> {
