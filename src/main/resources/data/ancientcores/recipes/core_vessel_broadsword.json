@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "rb ",
+    "rb ",
+    " s "
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "ancientcores:vessel_bronze_ingot"
+    },
+    "s":
+    {
+      "item": "minecraft:stick"
+    },
+    "b":
+    {
+      "tag": "forge:rods/bronze"
+    }
+  },
+  "result":
+  {
+    "item": "ancientcores:core_vessel_broadsword",
+    "count": 1
+  }
+}

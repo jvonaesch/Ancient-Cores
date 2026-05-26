@@ -1,8 +1,8 @@
 {
   "replace": false,
   "entries": [
-    "fenris_rpg:block_crush",
-    "fenris_rpg:enchantment_block_crush",
-    "fenris_rpg:block_smelt"
+    "ancientcores:block_crush",
+    "ancientcores:enchantment_block_crush",
+    "ancientcores:block_smelt"
   ]
 }

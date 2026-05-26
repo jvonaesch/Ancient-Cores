@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+
+  "base":{
+    "tag": "ancientcores:gem_katana"
+  },
+
+  "addition": {
+    "item": "ancientcores:essence_ingot"
+  },
+
+  "result":
+  {
+    "item": "ancientcores:essence_katana",
+    "count": 1
+  }
+}

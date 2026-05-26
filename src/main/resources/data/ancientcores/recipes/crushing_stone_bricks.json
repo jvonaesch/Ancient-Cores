@@ -1,0 +1,10 @@
+{
+  "type": "ancientcores:crushing",
+  "input": {
+    "item": "minecraft:stone_bricks"
+  },
+  "output": {
+    "item": "minecraft:crackled_stone_bricks",
+    "count": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "ancientcores:tool_modifier",
+  "conditions": [
+    {
+      "condition": "minecraft:damage_source_properties",
+      "predicate": {
+        "direct_entity": {
+          "equipment": {
+            "mainhand": {
+              "tag": "ancientcores:hammer"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "action": {
+    "recipe": {
+      "type": "ancientcores:crushing"
+    }
+  }
+}

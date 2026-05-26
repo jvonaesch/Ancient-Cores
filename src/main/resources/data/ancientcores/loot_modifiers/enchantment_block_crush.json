@@ -1,0 +1,21 @@
+{
+  "type": "ancientcores:tool_modifier",
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "enchantments": [
+          {
+            "enchantment": "ancientcores:crushing",
+            "levels": 1
+          }
+        ]
+      }
+    }
+  ],
+  "action": {
+    "recipe": {
+      "type": "ancientcores:crushing"
+    }
+  }
+}

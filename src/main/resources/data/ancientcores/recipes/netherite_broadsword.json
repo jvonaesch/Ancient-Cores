@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+
+  "base":{
+    "item": "ancientcores:diamond_broadsword"
+  },
+
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+
+  "result":
+  {
+    "item": "ancientcores:netherite_broadsword",
+    "count": 1
+  }
+}

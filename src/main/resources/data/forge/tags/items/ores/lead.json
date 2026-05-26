@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fenris_rpg:galenite_block",
-    "fenris_rpg:galenite"
+    "ancientcores:galenite_block",
+    "ancientcores:galenite"
   ]
 }

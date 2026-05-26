@@ -1,8 +1,0 @@
-{
-  "parent": "fenris_rpg:block/orientable",
-  "textures": {
-    "top": "fenris_rpg:block/crusher_top",
-    "front": "fenris_rpg:block/crusher_front_on",
-    "side": "fenris_rpg:block/crusher_side"
-  }
-}

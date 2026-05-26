@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+
+  "base":{
+    "item": "ancientcores:core_vessel_helmet"
+  },
+
+  "addition": {
+    "item": "ancientcores:dynamo_core"
+  },
+
+  "result":
+  {
+    "item": "ancientcores:dynamo_core_helmet",
+    "count": 1
+  }
+}

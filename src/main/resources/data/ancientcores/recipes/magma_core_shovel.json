@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+
+  "base":{
+    "item": "ancientcores:core_vessel_shovel"
+  },
+
+  "addition": {
+    "item": "ancientcores:magma_core"
+  },
+
+  "result":
+  {
+    "item": "ancientcores:magma_core_shovel",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ancientcores:item/core_vessel_hammer"
+  }
+}

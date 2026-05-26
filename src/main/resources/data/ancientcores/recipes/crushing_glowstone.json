@@ -1,0 +1,10 @@
+{
+  "type": "ancientcores:crushing",
+  "input": {
+    "item": "minecraft:glowstone"
+  },
+  "output": {
+    "item": "minecraft:glowstone_dust",
+    "count": 2
+  }
+}

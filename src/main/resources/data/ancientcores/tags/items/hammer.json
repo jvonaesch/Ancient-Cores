@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "ancientcores:wood_hammer",
+    "ancientcores:stone_hammer",
+    "ancientcores:iron_hammer",
+    "ancientcores:gold_hammer",
+    "ancientcores:diamond_hammer",
+    "ancientcores:netherite_hammer",
+    "ancientcores:bronze_hammer",
+    "ancientcores:silver_hammer",
+    "ancientcores:ruby_hammer",
+    "ancientcores:sapphire_hammer",
+    "ancientcores:essence_hammer",
+    "ancientcores:dynamo_core_hammer"
+  ]
+}

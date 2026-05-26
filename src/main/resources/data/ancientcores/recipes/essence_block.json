@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "rrr",
+    "rrr",
+    "rrr"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "ancientcores:essence_ingot"
+    }
+  },
+  "result":
+  {
+    "item": "ancientcores:essence_block",
+    "count": 1
+  }
+}

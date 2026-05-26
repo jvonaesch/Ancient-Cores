@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "ancientcores:wood_dagger",
+    "ancientcores:stone_dagger",
+    "ancientcores:iron_dagger",
+    "ancientcores:gold_dagger",
+    "ancientcores:diamond_dagger",
+    "ancientcores:netherite_dagger",
+    "ancientcores:bronze_dagger",
+    "ancientcores:silver_dagger",
+    "ancientcores:ruby_dagger",
+    "ancientcores:sapphire_dagger",
+    "ancientcores:essence_dagger",
+    "ancientcores:dynamo_core_dagger"
+  ]
+}

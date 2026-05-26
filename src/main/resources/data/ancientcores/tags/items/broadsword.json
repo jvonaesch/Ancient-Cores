@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "ancientcores:wood_broadsword",
+    "ancientcores:stone_broadsword",
+    "ancientcores:iron_broadsword",
+    "ancientcores:gold_broadsword",
+    "ancientcores:diamond_broadsword",
+    "ancientcores:netherite_broadsword",
+    "ancientcores:bronze_broadsword",
+    "ancientcores:silver_broadsword",
+    "ancientcores:ruby_broadsword",
+    "ancientcores:sapphire_broadsword",
+    "ancientcores:essence_broadsword",
+    "ancientcores:dynamo_core_broadsword"
+  ]
+}

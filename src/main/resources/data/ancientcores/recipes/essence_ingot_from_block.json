@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ancientcores:essence_block"
+    }
+  ],
+  "result":
+  {
+    "item": "ancientcores:essence_ingot",
+    "count": 9
+  }
+}

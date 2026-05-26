@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+
+  "base":{
+    "item": "ancientcores:core_vessel_hammer"
+  },
+
+  "addition": {
+    "item": "ancientcores:dynamo_core"
+  },
+
+  "result":
+  {
+    "item": "ancientcores:dynamo_core_hammer",
+    "count": 1
+  }
+}

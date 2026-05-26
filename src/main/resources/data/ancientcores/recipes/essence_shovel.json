@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+
+  "base":{
+    "tag": "ancientcores:gem_shovel"
+  },
+
+  "addition": {
+    "item": "ancientcores:essence_ingot"
+  },
+
+  "result":
+  {
+    "item": "ancientcores:essence_shovel",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/bronze"
+    },
+    {
+      "item": "ancientcores:pyrite"
+    }
+  ],
+  "result":
+  {
+    "item": "ancientcores:vessel_bronze_ingot",
+    "count": 1
+  }
+}

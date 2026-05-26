@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:blocks/ruby"
+    }
+  ],
+  "result":
+  {
+    "item": "ancientcores:ruby",
+    "count": 9
+  }
+}

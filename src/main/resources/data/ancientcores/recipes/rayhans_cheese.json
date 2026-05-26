@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " m ",
+    "mem",
+    " m "
+  ],
+  "key":
+  {
+    "m":
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    "e":
+    {
+      "item": "ancientcores:essence"
+    }
+  },
+  "result":
+  {
+    "item": "ancientcores:rayhans_cheese",
+    "count": 2
+  }
+}

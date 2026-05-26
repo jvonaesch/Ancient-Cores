@@ -1,0 +1,8 @@
+{
+  "parent": "ancientcores:block/orientable",
+  "textures": {
+    "top": "ancientcores:block/crusher_top",
+    "front": "ancientcores:block/crusher_front_on",
+    "side": "ancientcores:block/crusher_side"
+  }
+}

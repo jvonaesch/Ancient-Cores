@@ -1,0 +1,12 @@
+{
+  "type": "ancientcores:crushing",
+  "input": {
+    "item": "ancientcores:dolomite_sand"
+  },
+  "output": {
+    "item": "ancientcores:pyrite",
+    "min_count": 1,
+    "max_count": 3,
+    "chance": 0.2
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ancientcores:item/magma_core_axe"
+  }
+}

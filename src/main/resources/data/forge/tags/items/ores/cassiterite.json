@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fenris_rpg:cassiterite_block",
-    "fenris_rpg:cassiterite"
+    "ancientcores:cassiterite_block",
+    "ancientcores:cassiterite"
   ]
 }
