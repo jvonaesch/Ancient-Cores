@@ -21,6 +21,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class SingleHandedSwordItem extends TieredItem implements IVanishable {
     private final float attackDamage;
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
@@ -35,7 +37,9 @@ public class SingleHandedSwordItem extends TieredItem implements IVanishable {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
+    @Nonnull
+    public UseAction getUseAnimation(
+            @Nonnull ItemStack stack) {
         return UseAction.NONE;
     }
 
@@ -45,12 +49,18 @@ public class SingleHandedSwordItem extends TieredItem implements IVanishable {
     }
 
     //Same as swordItem
-    public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+    public boolean canPlayerBreakBlockWhileHolding(
+            BlockState state,
+            World worldIn,
+            BlockPos pos,
+            PlayerEntity player) {
         return !player.isCreative();
     }
 
-    //Can only destroy cobwebs faster
-    public float getDestroySpeed(ItemStack stack, BlockState state) {
+    @Override
+    public float getDestroySpeed(
+            @Nonnull ItemStack stack,
+            @Nonnull BlockState state) {
         if (state.is(Blocks.COBWEB)) {
             return 15.0F;
         } else {
@@ -58,69 +68,67 @@ public class SingleHandedSwordItem extends TieredItem implements IVanishable {
         }
     }
 
-    //Will now send the break animation for the hand the stack is in
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    @Override
+    public boolean hurtEnemy(
+            @Nonnull ItemStack stack,
+            @Nonnull LivingEntity target,
+            @Nonnull LivingEntity attacker) {
         stack.hurtAndBreak(1, attacker, livingEntity -> {livingEntity.broadcastBreakEvent(Hand.MAIN_HAND);});
         return true;
     }
 
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker, Hand hand) {
-        if (hand == Hand.OFF_HAND && attacker instanceof PlayerEntity) {
-        }
+    public void hurtEnemy(
+            @Nonnull ItemStack stack,
+            @Nonnull LivingEntity target,
+            @Nonnull LivingEntity attacker,
+            @Nonnull Hand hand) {
+        if (hand == Hand.OFF_HAND && attacker instanceof PlayerEntity) return;
         stack.hurtAndBreak(1, attacker, (entity) -> {
             attacker.broadcastBreakEvent(hand);
         });
-        return true;
     }
 
-    //Damages Dagger more than swords. Double wield compatibility included.
-    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        stack.hurtAndBreak(3, entityLiving, (entity) -> {
-            if (entityLiving.getItemInHand(Hand.OFF_HAND) == stack) {
-                entityLiving.broadcastBreakEvent(Hand.OFF_HAND);
-            } else {
-                entityLiving.broadcastBreakEvent(Hand.MAIN_HAND);
-            }
-        });
-
-        return true;
-    }
-
-    //Same as swordItem
     public boolean canHarvestBlock(BlockState blockIn) {
         return blockIn.is(Blocks.COBWEB);
     }
 
-    //Allows double wielding
     @Override
-    public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {
-        ItemStack offStack = playerIn.getItemInHand(Hand.OFF_HAND);
-        if (offStack.getItem() instanceof SingleHandedSwordItem) {
-            SingleHandedSwordItem offItem = (SingleHandedSwordItem) offStack.getItem();
+    @Nonnull
+    public ActionResultType interactLivingEntity(
+            @Nonnull ItemStack stack,
+            @Nonnull PlayerEntity playerIn,
+            @Nonnull LivingEntity target,
+            @Nonnull Hand hand) {
+        ItemStack mainStack = playerIn.getItemInHand(Hand.MAIN_HAND);
+        if ((!mainStack.isStackable()) && !(mainStack.getItem() instanceof SingleHandedSwordItem))
+            return ActionResultType.PASS;
 
-            if (hand == Hand.OFF_HAND) {
-                offItem.hurtEnemy(stack, target, playerIn, hand);
-                target.hurt(DamageSource.playerAttack(playerIn), offItem.getAttackDamageBonus());
-
-                return ActionResultType.SUCCESS;
-            } else {
-                offItem.interactLivingEntity(offStack, playerIn, target, Hand.OFF_HAND);
-            }
+        if (hand == Hand.OFF_HAND) {
+            playerIn.getItemInHand(hand).hurtAndBreak(1, playerIn, (entity) -> {
+                playerIn.broadcastBreakEvent(hand);
+            });
+            stack.hurtEnemy(target, playerIn);
+            target.hurt(DamageSource.playerAttack(playerIn), this.getAttackDamageBonus());
+            return ActionResultType.SUCCESS;
         }
         return ActionResultType.FAIL;
     }
 
-    //display the right animations
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-
+    @Override
+    @Nonnull
+    public ActionResult<ItemStack> use(
+            @Nonnull World worldIn,
+            @Nonnull PlayerEntity playerIn,
+            @Nonnull Hand handIn) {
         if (handIn == Hand.OFF_HAND) {
             return ActionResult.success(playerIn.getOffhandItem());
         }
         return ActionResult.fail(playerIn.getMainHandItem());
     }
 
-    //Double wield expansion
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(
+            EquipmentSlotType equipmentSlot,
+            ItemStack stack) {
         return equipmentSlot == EquipmentSlotType.MAINHAND || equipmentSlot == EquipmentSlotType.OFFHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot, stack);
     }
 

@@ -1,13 +1,14 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
+import me.FenrisFox86.ancientcores.common.items.BroadswordItem;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.AxeItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -19,11 +20,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CoreAxe extends AxeItem implements ICoreItem {
+public class CoreBroadsword extends BroadswordItem implements ICoreItem {
 
     public final ICoreType core;
 
-    public CoreAxe(ICoreType core, int attackDamageIn, float attackSpeedIn) {
+    public CoreBroadsword(ICoreType core, int attackDamageIn, float attackSpeedIn) {
         super(
                 core.getItemTier(),
                 attackDamageIn,
@@ -52,11 +53,11 @@ public class CoreAxe extends AxeItem implements ICoreItem {
     @Override
     public ActionResult<ItemStack> use(
             @Nonnull World worldIn,
-            @Nonnull PlayerEntity playerIn,
+            @Nonnull PlayerEntity player,
             @Nonnull Hand handIn) {
-        ActionResult<ItemStack> superResult = super.use(worldIn, playerIn, handIn);
+        ActionResult<ItemStack> superResult = super.use(worldIn, player, handIn);
         if (superResult.getResult() == ActionResultType.PASS) {
-            return core.use(worldIn, playerIn, handIn);
+            return core.use(worldIn, player, handIn);
         }
         return superResult;
     }
@@ -88,4 +89,15 @@ public class CoreAxe extends AxeItem implements ICoreItem {
     public boolean isFireResistant() {
         return core.isFireResistant();
     }
+
+    @Override
+    public void releaseUsing(
+            @Nonnull ItemStack stack,
+            @Nonnull World world,
+            @Nonnull LivingEntity living,
+            int timeLeft) {
+        super.releaseUsing(stack, world, living, timeLeft);
+        if (timeLeft > 0) core.use(world, living, Hand.MAIN_HAND);
+    }
 }
+

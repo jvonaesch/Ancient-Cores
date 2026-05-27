@@ -27,7 +27,7 @@ public enum CoreType implements ICoreType {
             @Nonnull
             public ActionResult<ItemStack> use(
                     World worldIn,
-                    PlayerEntity playerIn,
+                    LivingEntity playerIn,
                     Hand handIn) {
                 return ActionResult.pass(playerIn.getItemInHand(handIn));
             }
@@ -37,7 +37,7 @@ public enum CoreType implements ICoreType {
             @Nonnull
             public ActionResult<ItemStack> use(
                     World worldIn,
-                    PlayerEntity playerIn,
+                    LivingEntity playerIn,
                     Hand handIn) {
                 if (addEffectIfAbsent(playerIn, Effects.MOVEMENT_SPEED, 200, 1)) {
                     damageItem(playerIn.getItemInHand(handIn), 1, playerIn);
@@ -57,7 +57,7 @@ public enum CoreType implements ICoreType {
             @Override
             public boolean onLeftClickEntity(
                     ItemStack stack,
-                    PlayerEntity player,
+                    LivingEntity player,
                     Entity entity) {
                 if(entity.isAlive()) {
                     ((LivingEntity) entity).addEffect(new EffectInstance(Effects.GLOWING, 100));
@@ -151,7 +151,7 @@ public enum CoreType implements ICoreType {
     @Override
     public ActionResult<ItemStack> use(
             World worldIn,
-            PlayerEntity playerIn,
+            LivingEntity playerIn,
             Hand handIn) {
         return ActionResult.pass(playerIn.getItemInHand(handIn));
     }
@@ -159,7 +159,7 @@ public enum CoreType implements ICoreType {
     @Override
     public boolean onLeftClickEntity(
             ItemStack stack,
-            PlayerEntity player,
+            LivingEntity player,
             Entity entity) {
         return false;
     }

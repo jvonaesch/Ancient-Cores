@@ -7,9 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.AxeItem;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -19,11 +18,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CoreAxe extends AxeItem implements ICoreItem {
+public class CoreSword extends SwordItem implements ICoreItem {
 
     public final ICoreType core;
 
-    public CoreAxe(ICoreType core, int attackDamageIn, float attackSpeedIn) {
+    public CoreSword(ICoreType core, int attackDamageIn, float attackSpeedIn) {
         super(
                 core.getItemTier(),
                 attackDamageIn,
@@ -54,11 +53,7 @@ public class CoreAxe extends AxeItem implements ICoreItem {
             @Nonnull World worldIn,
             @Nonnull PlayerEntity playerIn,
             @Nonnull Hand handIn) {
-        ActionResult<ItemStack> superResult = super.use(worldIn, playerIn, handIn);
-        if (superResult.getResult() == ActionResultType.PASS) {
-            return core.use(worldIn, playerIn, handIn);
-        }
-        return superResult;
+        return core.use(worldIn, playerIn, handIn);
     }
 
     @Override
@@ -89,3 +84,4 @@ public class CoreAxe extends AxeItem implements ICoreItem {
         return core.isFireResistant();
     }
 }
+

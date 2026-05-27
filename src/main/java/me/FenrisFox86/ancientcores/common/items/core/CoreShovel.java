@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.AxeItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -19,11 +19,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CoreAxe extends AxeItem implements ICoreItem {
+public class CoreShovel extends ShovelItem implements ICoreItem {
 
     public final ICoreType core;
 
-    public CoreAxe(ICoreType core, int attackDamageIn, float attackSpeedIn) {
+    public CoreShovel(ICoreType core, int attackDamageIn, float attackSpeedIn) {
         super(
                 core.getItemTier(),
                 attackDamageIn,
@@ -89,3 +89,4 @@ public class CoreAxe extends AxeItem implements ICoreItem {
         return core.isFireResistant();
     }
 }
+

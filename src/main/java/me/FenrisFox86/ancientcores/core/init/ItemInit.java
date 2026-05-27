@@ -62,8 +62,6 @@ public class ItemInit {
                 tier, 4, -1.5F, new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("DAGGER", addItem(name+ "_dagger", new SingleHandedSwordItem(
                 tier, 0, -1.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
-        MAP.put("KATANA", addItem(name+ "_katana", new SingleHandedSwordItem(
-                tier, 2, -1.5F, new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("BROADSWORD", addItem(name+ "_broadsword", new BroadswordItem(
                 tier, 6, -3.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
 
@@ -108,7 +106,6 @@ public class ItemInit {
     CORE_VESSEL_SHOVEL = addItem("core_vessel_shovel", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
     CORE_VESSEL_HOE = addItem("core_vessel_hoe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
     CORE_VESSEL_HAMMER = addItem("core_vessel_hammer", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-    CORE_VESSEL_KATANA = addItem("core_vessel_katana", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
     CORE_VESSEL_DAGGER = addItem("core_vessel_dagger", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
     CORE_VESSEL_BROADSWORD = addItem("core_vessel_broadsword", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
 
@@ -117,24 +114,28 @@ public class ItemInit {
     DYNAMO_CHESTPLATE = addItem("dynamo_core_chestplate", new DynamoCoreChestplate()),
     DYNAMO_LEGGINGS = addItem("dynamo_core_leggings", new DynamoCoreLeggings()),
     DYNAMO_BOOTS = addItem("dynamo_core_boots", new DynamoCoreBoots()),
-    DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe(CoreType.DYNAMO, 3, -2.0F)),
-    /*DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword(CoreType.DYNAMO, 2, -1.0F)),
+    DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword(CoreType.DYNAMO, 2, -1.0F)),
     DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe(CoreType.DYNAMO, 3, -2.0F)),
     DYNAMO_PICKAXE = addItem("dynamo_core_pickaxe", new CorePickaxe(CoreType.DYNAMO, 2, -2.0F)),
-    DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe(CoreType.DYNAMO, 0, -2.0F)),
     DYNAMO_SHOVEL = addItem("dynamo_core_shovel", new CoreShovel(CoreType.DYNAMO, 1, -2.0F)),
-    DYNAMO_KATANA = addItem("dynamo_core_katana", new CoreKatana(CoreType.DYNAMO, 2, -1.5F)),
+    DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe(CoreType.DYNAMO, 0, -2.0F)),
     DYNAMO_HAMMER = addItem("dynamo_core_hammer", new CoreHammer(CoreType.DYNAMO, 4, -1.5F)),
+    DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger(CoreType.DYNAMO, 0, -1.0F)),
     DYNAMO_BROADSWORD = addItem("dynamo_core_broadsword", new CoreBroadsword(CoreType.DYNAMO, 6, -3.0F)),
-    DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger(CoreType.DYNAMO, 0, -0.0F)),
-    */
 
     MAGMA_CORE = addItem("magma_core", new MagmaCore()),
     MAGMA_HELMET = addItem("magma_core_helmet", new MagmaCoreHelmet()),
     MAGMA_CHESTPLATE = addItem("magma_core_chestplate", new MagmaCoreChestplate()),
     MAGMA_LEGGINGS = addItem("magma_core_leggings", new MagmaCoreLeggings()),
     MAGMA_BOOTS = addItem("magma_core_boots", new MagmaCoreBoots()),
+    MAGMA_SWORD = addItem("magma_core_sword", new CoreSword(CoreType.MAGMA, 2, -1.0F)),
     MAGMA_AXE = addItem("magma_core_axe", new CoreAxe(CoreType.MAGMA, 3, -2.0F)),
+    MAGMA_PICKAXE = addItem("magma_core_pickaxe", new CorePickaxe(CoreType.MAGMA, 2, -2.0F)),
+    MAGMA_SHOVEL = addItem("magma_core_shovel", new CoreShovel(CoreType.MAGMA, 1, -2.0F)),
+    MAGMA_HOE = addItem("magma_core_hoe", new CoreHoe(CoreType.MAGMA, 0, -2.0F)),
+    MAGMA_HAMMER = addItem("magma_core_hammer", new CoreHammer(CoreType.MAGMA, 4, -1.5F)),
+    MAGMA_DAGGER = addItem("magma_core_dagger", new CoreDagger(CoreType.MAGMA, 0, -1.0F)),
+    MAGMA_BROADSWORD = addItem("magma_core_broadsword", new CoreBroadsword(CoreType.MAGMA, 6, -3.0F)),
 
     BRONZE_INGOT = addItem("bronze_ingot"),
     BRONZE_NUGGET = addItem("bronze_nugget"),

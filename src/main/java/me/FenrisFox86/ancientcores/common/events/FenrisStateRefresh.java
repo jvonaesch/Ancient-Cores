@@ -1,7 +1,7 @@
 package me.FenrisFox86.ancientcores.common.events;
 
 import me.FenrisFox86.ancientcores.AncientCores;
-import me.FenrisFox86.ancientcores.common.capabilities.FenrisPlayerReader;
+import me.FenrisFox86.ancientcores.common.capabilities.ModPlayerReader;
 import me.FenrisFox86.ancientcores.common.capabilities.FenrisStateProvider;
 import me.FenrisFox86.ancientcores.common.items.BroadswordItem;
 import net.minecraft.entity.Entity;
@@ -36,9 +36,9 @@ public class FenrisStateRefresh {
 
         if (event.side.isServer()) {
 
-            float dashing = FenrisPlayerReader.getFenrisRpgFloat(player, "dashing");
+            float dashing = ModPlayerReader.getFenrisRpgFloat(player, "dashing");
             if (dashing > 0) {
-                FenrisPlayerReader.setFenrisRpgFloat(player, "dashing", dashing - 1);
+                ModPlayerReader.setModFloat(player, "dashing", dashing - 1);
                 World world = player.level;
                 double
                         x = player.getX(),
@@ -52,12 +52,12 @@ public class FenrisStateRefresh {
                     Item mainItem = player.getMainHandItem().getItem();
                     if (mainItem instanceof BroadswordItem && entity != player && entity instanceof LivingEntity) {
                         entity.hurt(DamageSource.playerAttack(player),
-                                (((BroadswordItem) mainItem).getAttackDamageBonus()));
+                                (((BroadswordItem) mainItem).getAttackDamage()));
                         mainItem.hurtEnemy(player.getOffhandItem(), (LivingEntity)entity, player);
                     }
                 }
             } else if (dashing < 0) {
-                FenrisPlayerReader.setFenrisRpgFloat(player, "dashing", 0.0f);
+                ModPlayerReader.setModFloat(player, "dashing", 0.0f);
             }
         }
     }

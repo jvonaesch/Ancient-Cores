@@ -1,6 +1,6 @@
 package me.FenrisFox86.ancientcores.common.items;
 
-import me.FenrisFox86.ancientcores.common.capabilities.FenrisPlayerReader;
+import me.FenrisFox86.ancientcores.common.capabilities.ModPlayerReader;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -10,45 +10,61 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class BroadswordItem extends SingleHandedSwordItem {
+import javax.annotation.Nonnull;
+
+public class BroadswordItem extends SwordItem {
+
+    private final int attackDamage;
 
     public BroadswordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
         super(tier, attackDamageIn, attackSpeedIn, builderIn);
+        this.attackDamage = attackDamageIn;
     }
 
-    public UseAction getUseAnimation(ItemStack p_77661_1_) {
+    @Override
+    @Nonnull
+    public UseAction getUseAnimation(@Nonnull ItemStack stack) {
         return UseAction.BOW;
     }
 
-    public int getUseDuration(ItemStack p_77626_1_) {
+    @Override
+    public int getUseDuration(@Nonnull ItemStack stack) {
         return 72000;
     }
 
-
     @Override
-    public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {
+    @Nonnull
+    public ActionResultType interactLivingEntity(
+            @Nonnull ItemStack stack,
+            @Nonnull PlayerEntity playerIn,
+            @Nonnull LivingEntity target,
+            @Nonnull Hand hand) {
         return ActionResultType.FAIL;
     }
 
-    /*@Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        return false;
-    }*/
+    @Nonnull
+    public ActionResult<ItemStack> use(
+            @Nonnull World worldIn,
+            @Nonnull PlayerEntity player,
+            @Nonnull Hand handIn) {
 
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-
-        ItemStack stack = playerIn.getItemInHand(handIn);
-        if (!playerIn.getCooldowns().isOnCooldown(this)) {
-            playerIn.startUsingItem(handIn);
+        ItemStack stack = player.getItemInHand(handIn);
+        if (!player.getItemInHand(Hand.OFF_HAND).isEmpty()) return ActionResult.fail(stack);
+        if (!player.getCooldowns().isOnCooldown(this)) {
+            player.startUsingItem(handIn);
             return ActionResult.fail(stack);
         }
         return ActionResult.fail(stack);
     }
 
-    public void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-
-        if (entityLiving instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity)entityLiving;
+    public void releaseUsing(
+            @Nonnull ItemStack stack,
+            @Nonnull World world,
+            @Nonnull LivingEntity living,
+            int timeLeft) {
+        if (!living.getItemInHand(Hand.OFF_HAND).isEmpty()) return;
+        if (living instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity)living;
 
             float max_charge = 40.0f;
             float total_charge = (getUseDuration(stack) - timeLeft);
@@ -58,8 +74,12 @@ public class BroadswordItem extends SingleHandedSwordItem {
             Vector3d vector = player.getViewVector(1f).normalize().multiply(factor, 1, factor);
             player.setDeltaMovement(vector);
             player.getCooldowns().addCooldown(stack.getItem(), 50);
-            FenrisPlayerReader.setFenrisRpgFloat(player, "dashing", ((float)(int)charge)*20 + 0.5f);
+            ModPlayerReader.setModFloat(player, "dashing", ((float)(int)charge)*20 + 0.5f);
             stack.hurtAndBreak(8, player, p -> p.broadcastBreakEvent(Hand.MAIN_HAND));
         }
+    }
+
+    public float getAttackDamage() {
+        return this.attackDamage;
     }
 }
