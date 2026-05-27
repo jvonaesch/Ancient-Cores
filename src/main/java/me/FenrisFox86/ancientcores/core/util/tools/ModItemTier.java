@@ -2,21 +2,22 @@ package me.FenrisFox86.ancientcores.core.util.tools;
 
 import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemTier;
 import net.minecraft.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
 public enum ModItemTier implements IItemTier {
 
-    RUBY(3, 2003, 6.0F, 7.0F, 36, () -> {
+    RUBY(3, 2003, 7.0F, 4.0F, 21, () -> {
         return Ingredient.of(ItemInit.RUBY.get());
     }),
 
-    SAPPHIRE(3, 2003, 8.0F, 5.0F, 36, () -> {
+    SAPPHIRE(3, 2003, 9.0F, 3.0F, 21, () -> {
         return Ingredient.of(ItemInit.SAPPHIRE.get());
     }),
 
-    ESSENCE(4, 2135, 7.0F, 10.0F, 36, () -> {
+    ESSENCE(4, 2135, 10.0F, 6.0f, 24, () -> {
         return Ingredient.of(ItemInit.ESSENCE.get());
     }),
 
@@ -28,15 +29,15 @@ public enum ModItemTier implements IItemTier {
         return Ingredient.of(ItemInit.SILVER_INGOT.get());
     }),
 
-    RUBY_CORE(3, 1000, 4.0F, 5.0F, 28, () -> {
+    RUBY_CORE(3, 1000, 8.0F, 3.0F, 28, () -> {
         return Ingredient.of(ItemInit.RUBY.get());
     }),
 
-    DYNAMO_CORE(5, 2604, 10.0F, 28.0F, 48, () -> {
+    DYNAMO_CORE(5, 2604, 10.0F, 5.0F, 36, () -> {
         return Ingredient.of(ItemInit.DYNAMO_CORE.get());
     }),
 
-    MAGMA_CORE(5, 2604, 10.0F, 28.0F, 48, () -> {
+    MAGMA_CORE(5, 2604, 10.0F, 5.0F, 36, () -> {
         return Ingredient.of(ItemInit.MAGMA_CORE.get());
     });
 

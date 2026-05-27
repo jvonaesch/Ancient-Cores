@@ -1,5 +1,6 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
@@ -17,11 +18,10 @@ public interface ICoreType {
 
     IItemTier getItemTier();
 
-    ActionResult<ItemStack> useCoreItem(
+    ActionResult<ItemStack> use(
             net.minecraft.world.World worldIn,
             net.minecraft.entity.player.PlayerEntity playerIn,
-            net.minecraft.util.Hand handIn,
-            ICoreItem coreItem);
+            net.minecraft.util.Hand handIn);
 
     boolean onLeftClickEntity(
             ItemStack stack,

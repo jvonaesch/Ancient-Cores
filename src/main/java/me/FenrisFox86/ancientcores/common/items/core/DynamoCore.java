@@ -1,32 +1,21 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
-import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
-import me.FenrisFox86.ancientcores.core.util.tools.ModItemTier;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.Objects;
 
 import static me.FenrisFox86.ancientcores.common.items.TooltipUtil.appendCoreToolHoverText;
 
@@ -56,7 +45,7 @@ public class DynamoCore extends Item implements ICoreItem {
             @Nonnull World worldIn,
             @Nonnull PlayerEntity playerIn,
             @Nonnull Hand handIn) {
-        return core.useCoreItem(worldIn, playerIn, handIn, this);
+        return core.use(worldIn, playerIn, handIn);
         // TODO: use item
     }
 

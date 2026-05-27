@@ -7,7 +7,7 @@
   "tooltip.ancientcores.dynamo_core_leggings": "§5Ludicrous Speed!!!",
   "tooltip.ancientcores.dynamo_core_boots": "§5Give you an extreme Jump boost and make you completely resistant to fall damage.",
   "tooltip.ancientcores.dynamo_core_helmet": "§5Boosts your Attack Speed.",
-  "tooltip.ancientcores.dynamo_core_tool": "§3Dynamo Boost: Right click to gain speed, haste and jump boost.",
+  "tooltip.ancientcores.dynamo_core_tool": "§3Dynamo Boost: Right click to gain speed, haste or jump boost. (You receive the first effect you don't have)",
   "tooltip.ancientcores.dynamo_core_passive": "§2Dynamo Repair: Dynamo core Items repair themselves when moving fast.",
   "tooltip.ancientcores.dynamo_core_attack": "§bSuper Conductor: Normal attacks make enemies glow and Remove certain effects from them.",
 

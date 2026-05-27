@@ -2,49 +2,58 @@ package me.FenrisFox86.ancientcores.core.util.tools;
 
 import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
+import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
-    RUBY_ARMOR("ruby", 10, new int[] {3, 6, 8, 3}, ModItemTier.RUBY.getEnchantmentValue(),
-            SoundEvents.ARMOR_EQUIP_IRON, 2.0f,0.0f, () -> {
-        return Ingredient.of(ItemInit.RUBY.get());
-    }),
-    SAPPHIRE_ARMOR("sapphire", 10, new int[] {3, 6, 8, 3}, ModItemTier.SAPPHIRE.getEnchantmentValue(),
-    SoundEvents.ARMOR_EQUIP_IRON, 3.0f,0.1f, () -> {
-        return Ingredient.of(ItemInit.SAPPHIRE.get());
-    }),
-    ESSENCE_ARMOR("essence", 20, new int[] {5, 10, 16, 5}, ModItemTier.ESSENCE.getEnchantmentValue(),
-    SoundEvents.ARMOR_EQUIP_IRON, 5.0f,0.2f, () -> {
-        return Ingredient.of(ItemInit.ESSENCE.get());
-    }),
-    BRONZE_ARMOR("bronze", 4, new int[] {2, 4, 5, 3}, ModItemTier.BRONZE.getEnchantmentValue(),
-            SoundEvents.ARMOR_EQUIP_IRON, 0.0f,0.0f, () -> {
-                return Ingredient.of(ItemInit.BRONZE_INGOT.get());
-            }),
-    SILVER_ARMOR("silver", 4, new int[] {2, 4, 5, 2}, ModItemTier.SILVER.getEnchantmentValue(),
-    SoundEvents.ARMOR_EQUIP_IRON, 0.0f,0.0f, () -> {
-        return Ingredient.of(ItemInit.SILVER_INGOT.get());
-    }),
-    RUBY_CORE_ARMOR("ruby_core", 7, new int[] {2, 5, 7, 3}, ModItemTier.RUBY_CORE.getEnchantmentValue(),
-            SoundEvents.ARMOR_EQUIP_IRON, 1.0f,0.0f, () -> {
-        return Ingredient.of(ItemInit.RUBY.get());
-    }),
-    DYNAMO_CORE_ARMOR("dynamo_core", 50, new int[] {20, 20, 30, 30}, ModItemTier.DYNAMO_CORE.getEnchantmentValue(),
-            SoundEvents.ARMOR_EQUIP_IRON, 5.0f,0.5f, () -> {
-        return Ingredient.of(ItemInit.DYNAMO_CORE.get());
-    }),
-    MAGMA_CORE_ARMOR("magma_core", 50, new int[] {20, 20, 30, 30}, ModItemTier.MAGMA_CORE.getEnchantmentValue(),
-            SoundEvents.ARMOR_EQUIP_IRON, 5.0f,0.5f, () -> {
-        return Ingredient.of(ItemInit.MAGMA_CORE.get());
-    })
-    ;
+    RUBY_ARMOR("ruby", 33, new int[] {3, 6, 8, 3},
+            ModItemTier.RUBY.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_DIAMOND,
+            2.0f,0.0f,
+            () -> Ingredient.of(ItemInit.RUBY.get())),
+    SAPPHIRE_ARMOR("sapphire", 33, new int[] {3, 6, 8, 3},
+            ModItemTier.SAPPHIRE.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_DIAMOND,
+            3.0f,0.1f,
+            () -> Ingredient.of(ItemInit.SAPPHIRE.get())),
+    ESSENCE_ARMOR("essence", 40, new int[] {4, 7, 9, 4},
+            ModItemTier.ESSENCE.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_GOLD,
+            5.0f,0.2f,
+            () -> Ingredient.of(ItemInit.ESSENCE.get())),
+    BRONZE_ARMOR("bronze", 10, new int[] {2, 4, 5, 2},
+            ModItemTier.BRONZE.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_IRON,
+            0.0f,0.0f,
+            () -> Ingredient.of(ItemInit.BRONZE_INGOT.get())),
+    SILVER_ARMOR("silver", 11, new int[] {2, 5, 6, 2},
+            ModItemTier.SILVER.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_IRON,
+            0.0f,0.0f, () ->
+            Ingredient.of(ItemInit.SILVER_INGOT.get())),
+    RUBY_CORE_ARMOR("ruby_core", 27, new int[] {2, 5, 7, 3},
+            ModItemTier.RUBY_CORE.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_IRON,
+            1.0f,0.0f,
+            () -> Ingredient.of(ItemInit.RUBY.get())),
+    DYNAMO_CORE_ARMOR("dynamo_core", 45, new int[] {4, 7, 9, 4},
+            ModItemTier.DYNAMO_CORE.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_IRON,
+            4.0f,0.4f,
+            () -> Ingredient.of(ItemInit.DYNAMO_CORE.get())),
+    MAGMA_CORE_ARMOR("magma_core", 45, new int[] {4, 7, 9, 4},
+            ModItemTier.MAGMA_CORE.getEnchantmentValue(),
+            SoundEvents.ARMOR_EQUIP_IRON,
+            4.0f,0.4f,
+            () -> Ingredient.of(ItemInit.MAGMA_CORE.get()));
 
-    private final int[] baseDurability = {128, 144, 160, 112};
+    private final int[] baseDurability = {13, 15, 16, 11};
     private final String name;
     private final int durabilityMultiplier;
     private final int[] armorVal;
@@ -83,16 +92,19 @@ public enum ModArmorMaterial implements IArmorMaterial {
     }
 
     @Override
+    @Nonnull
     public SoundEvent getEquipSound() {
         return this.equipSound;
     }
 
     @Override
+    @Nonnull
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
 
     @Override
+    @Nonnull
     public String getName() {
         return this.name;
     }

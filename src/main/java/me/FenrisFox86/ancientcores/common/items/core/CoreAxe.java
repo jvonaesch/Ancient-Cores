@@ -4,6 +4,7 @@ import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.AxeItem;
@@ -52,7 +53,7 @@ public class CoreAxe extends AxeItem implements ICoreItem {
             @Nonnull World worldIn,
             @Nonnull PlayerEntity playerIn,
             @Nonnull Hand handIn) {
-        return core.useCoreItem(worldIn, playerIn, handIn, this);
+        return core.use(worldIn, playerIn, handIn);
     }
 
     @Override
@@ -71,6 +72,11 @@ public class CoreAxe extends AxeItem implements ICoreItem {
             int itemSlot,
             boolean isSelected) {
         this.core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
+        return super.onEntityItemUpdate(stack, entity);
     }
 
     @Override

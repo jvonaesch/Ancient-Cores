@@ -45,7 +45,7 @@ public class MagmaCore extends Item implements ICoreItem {
             @Nonnull World worldIn,
             @Nonnull PlayerEntity playerIn,
             @Nonnull Hand handIn) {
-        return core.useCoreItem(worldIn, playerIn, handIn, this);
+        return core.use(worldIn, playerIn, handIn);
     }
 
     @Override
