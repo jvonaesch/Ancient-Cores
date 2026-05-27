@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
+import javax.annotation.Nonnull;
+
 public class DarkContract extends Enchantment {
 
     public DarkContract(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
@@ -16,11 +18,11 @@ public class DarkContract extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(Enchantment ench) {
-        if (ench instanceof Vampiric) {
+    protected boolean checkCompatibility(@Nonnull Enchantment other) {
+        if (other instanceof Vampiric) {
             return false;
         }
-        return super.checkCompatibility(ench);
+        return super.checkCompatibility(other);
     }
 
     @Override

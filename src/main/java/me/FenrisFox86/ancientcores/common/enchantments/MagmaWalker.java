@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
+import javax.annotation.Nonnull;
+
 public class MagmaWalker extends Enchantment {
 
     public MagmaWalker(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
@@ -11,12 +13,7 @@ public class MagmaWalker extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
-        return 1;
-    }
-
-    @Override
-    protected boolean checkCompatibility(Enchantment ench) {
-        return super.checkCompatibility(ench);
+    protected boolean checkCompatibility(@Nonnull Enchantment other) {
+        return super.checkCompatibility(other);
     }
 }

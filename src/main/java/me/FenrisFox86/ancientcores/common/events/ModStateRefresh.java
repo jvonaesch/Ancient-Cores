@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 @Mod.EventBusSubscriber
-public class FenrisStateRefresh {
+public class ModStateRefresh {
     public static final ResourceLocation COMBAT_STATE_CAP = new ResourceLocation(AncientCores.MOD_ID, "combat_state");
 
     @SubscribeEvent

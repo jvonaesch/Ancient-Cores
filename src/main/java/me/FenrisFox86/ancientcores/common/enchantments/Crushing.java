@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
+import javax.annotation.Nonnull;
+
 public class Crushing extends Enchantment {
 
     public Crushing(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
@@ -11,13 +13,8 @@ public class Crushing extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
-        return 1;
-    }
-
-    @Override
-    protected boolean checkCompatibility(Enchantment enchantment) {
-        if (enchantment instanceof Lumberjack) return false;
-        return super.checkCompatibility(enchantment);
+    protected boolean checkCompatibility(@Nonnull Enchantment other) {
+        if (other instanceof Lumberjack) return false;
+        return super.checkCompatibility(other);
     }
 }

@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
+import javax.annotation.Nonnull;
+
 public class Smelting extends Enchantment {
 
     public Smelting(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
@@ -11,13 +13,8 @@ public class Smelting extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
-        return 1;
-    }
-
-    @Override
-    protected boolean checkCompatibility(Enchantment ench) {
-        if (ench instanceof Lumberjack) return false;
-        return super.checkCompatibility(ench);
+    protected boolean checkCompatibility(@Nonnull Enchantment other) {
+        if (other instanceof Lumberjack) return false;
+        return super.checkCompatibility(other);
     }
 }

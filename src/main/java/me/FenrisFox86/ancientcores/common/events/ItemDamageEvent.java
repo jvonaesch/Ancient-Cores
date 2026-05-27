@@ -5,9 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.Event;
 
 public class ItemDamageEvent extends Event {
-    private ItemStack item;
-    private LivingEntity target;
-    private LivingEntity attacker;
+    private final ItemStack item;
+    private final LivingEntity target;
+    private final LivingEntity attacker;
 
     public ItemDamageEvent(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         this.item = stack;

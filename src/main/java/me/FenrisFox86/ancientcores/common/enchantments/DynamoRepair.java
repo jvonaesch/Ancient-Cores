@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
+import javax.annotation.Nonnull;
+
 public class DynamoRepair extends Enchantment {
 
     public DynamoRepair(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
@@ -16,10 +18,10 @@ public class DynamoRepair extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(Enchantment ench) {
-        if (ench instanceof VampiricRepair) {
+    protected boolean checkCompatibility(@Nonnull Enchantment other) {
+        if (other instanceof VampiricRepair) {
             return false;
         }
-        return super.checkCompatibility(ench);
+        return super.checkCompatibility(other);
     }
 }
