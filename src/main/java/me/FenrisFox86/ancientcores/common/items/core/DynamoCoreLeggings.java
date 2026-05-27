@@ -45,7 +45,7 @@ public class DynamoCoreLeggings extends ArmorItem {
     }
 
     @Override
-    public boolean isFoil(ItemStack stack) {
+    public boolean isFoil(@Nonnull ItemStack stack) {
         return true;
     }
 

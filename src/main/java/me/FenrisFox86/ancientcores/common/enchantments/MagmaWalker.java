@@ -10,7 +10,6 @@ public class MagmaWalker extends Enchantment {
         super(rarityIn, typeIn, slots);
     }
 
-
     @Override
     public int getMaxLevel() {
         return 1;
