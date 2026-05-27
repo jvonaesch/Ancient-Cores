@@ -156,10 +156,8 @@ public class EnchantmentInit {
             }
         }
 
-
-        if(world.getDayTime()%20 == 0) {
-
-            //Dynamo
+        //Dynamo
+        if(world.getGameTime() % 20 == 0) {
             if(living.isSprinting()) {
                 for(ItemStack stack: equipment) {
                     int level = EnchantmentHelper.getItemEnchantmentLevel(DYNAMO_REPAIR.get(), stack);
