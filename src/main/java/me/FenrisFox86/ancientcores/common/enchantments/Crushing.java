@@ -14,7 +14,7 @@ public class Crushing extends Enchantment {
 
     @Override
     protected boolean checkCompatibility(@Nonnull Enchantment other) {
-        if (other instanceof Lumberjack) return false;
+        if (other instanceof Lumberjack || other instanceof Smelting) return false;
         return super.checkCompatibility(other);
     }
 }

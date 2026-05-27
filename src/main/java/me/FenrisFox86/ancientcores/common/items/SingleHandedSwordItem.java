@@ -101,7 +101,7 @@ public class SingleHandedSwordItem extends TieredItem implements IVanishable {
             @Nonnull Hand hand) {
         ItemStack mainStack = playerIn.getItemInHand(Hand.MAIN_HAND);
         if ((!mainStack.isStackable()) && !(mainStack.getItem() instanceof SingleHandedSwordItem))
-            return ActionResultType.PASS;
+            return ActionResultType.FAIL;
 
         if (hand == Hand.OFF_HAND) {
             playerIn.getItemInHand(hand).hurtAndBreak(1, playerIn, (entity) -> {

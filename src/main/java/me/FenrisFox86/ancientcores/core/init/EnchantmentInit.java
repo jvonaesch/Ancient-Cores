@@ -2,18 +2,18 @@ package me.FenrisFox86.ancientcores.core.init;
 
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.enchantments.*;
+import me.FenrisFox86.ancientcores.common.items.core.CoreType;
+import me.FenrisFox86.ancientcores.common.items.core.ICoreItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber
 public class EnchantmentInit {
@@ -26,6 +26,11 @@ public class EnchantmentInit {
     }
 
     public static final EnchantmentType AXE_TYPE = EnchantmentType.create("axe", item -> item instanceof AxeItem);
+    public static final EnchantmentType ARMOR_FEET_NON_MAGMA = EnchantmentType.create(
+            "boots_non_magma", item -> {
+                if (!(item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlotType.FEET)) return false;
+                return !(item instanceof ICoreItem) || ((ICoreItem) item).getCoreType() != CoreType.MAGMA;
+            });
 
     //Enchantments
     public static final RegistryObject<Enchantment> DYNAMO_REPAIR = ENCHANTMENTS.register("dynamo_repair", ()
@@ -56,8 +61,8 @@ public class EnchantmentInit {
 
     public static final RegistryObject<Enchantment> MAGMA_WALKER = ENCHANTMENTS.register("magma_walker", ()
             -> new MagmaWalker(
-            Enchantment.Rarity.RARE,
-            EnchantmentType.ARMOR_FEET,
+            Enchantment.Rarity.VERY_RARE,
+            ARMOR_FEET_NON_MAGMA,
             new EquipmentSlotType[]{
                     EquipmentSlotType.FEET
             }));

@@ -19,9 +19,7 @@ public class DarkContract extends Enchantment {
 
     @Override
     protected boolean checkCompatibility(@Nonnull Enchantment other) {
-        if (other instanceof Vampiric) {
-            return false;
-        }
+        if (other instanceof Vampiric || other instanceof VampiricRepair) return false;
         return super.checkCompatibility(other);
     }
 

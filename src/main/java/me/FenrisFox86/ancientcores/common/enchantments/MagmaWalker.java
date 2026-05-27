@@ -4,6 +4,7 @@ import me.FenrisFox86.ancientcores.common.items.core.CoreType;
 import me.FenrisFox86.ancientcores.common.items.core.ICoreItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.FrostWalkerEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
@@ -17,14 +18,7 @@ public class MagmaWalker extends Enchantment {
 
     @Override
     protected boolean checkCompatibility(@Nonnull Enchantment other) {
+        if (other instanceof FrostWalkerEnchantment) return false;
         return super.checkCompatibility(other);
-    }
-
-    @Override
-    public boolean canEnchant(@Nonnull ItemStack stack) {
-        if (stack.getItem() instanceof ICoreItem && ((ICoreItem) stack.getItem()).getCoreType() == CoreType.MAGMA) {
-            return false;
-        }
-        return super.canEnchant(stack);
     }
 }
