@@ -21,7 +21,7 @@ public class MagmaWalker extends Enchantment {
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
+    public boolean canEnchant(@Nonnull ItemStack stack) {
         if (stack.getItem() instanceof ICoreItem && ((ICoreItem) stack.getItem()).getCoreType() == CoreType.MAGMA) {
             return false;
         }

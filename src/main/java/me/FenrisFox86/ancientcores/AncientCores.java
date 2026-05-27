@@ -20,6 +20,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("ancientcores")
 public class AncientCores {
@@ -66,6 +68,7 @@ public class AncientCores {
 
     public static final ItemGroup MOD_TAB = new ItemGroup("basic_material_tab") {
         @Override
+        @Nonnull
         public ItemStack makeIcon() {
             return new ItemStack(ItemInit.RUBY.get());
         }

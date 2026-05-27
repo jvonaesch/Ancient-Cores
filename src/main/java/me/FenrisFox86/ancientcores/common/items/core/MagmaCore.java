@@ -62,13 +62,14 @@ public class MagmaCore extends Item implements ICoreItem {
     }
 
     @SubscribeEvent
-    public static void onLivingBurn(LivingDamageEvent event) {
+    public static void onLivingDamage(LivingDamageEvent event) {
+        if (!event.getSource().isFire()) return;
         LivingEntity living = event.getEntityLiving();
         for (ItemStack stack: living.getAllSlots()) {
             Item item = stack.getItem();
-            //LoggerFactory.getLogger(MagmaCore.class).debug("living burn with item: " + item);
             if (!(item instanceof ICoreItem)) continue;
             if (!((ICoreItem)item).getCoreType().equals(CoreType.MAGMA)) continue;
+
             event.setAmount(0);
             event.setCanceled(true);
         } 
