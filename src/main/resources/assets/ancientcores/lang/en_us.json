@@ -3,8 +3,8 @@
 
   "tooltip.ancientcores.hold_shift": "§7Hold §e[Shift] §7for more information",
 
-  "tooltip.ancientcores.dynamo_core_chestplate": "§o§eBoosts your Knockback.",
-  "tooltip.ancientcores.dynamo_core_leggings": "§o§eLudicrous Speed!!! §r§7(greatly increases your movement speed)",
+  "tooltip.ancientcores.dynamo_core_chestplate": "§o§eHeavy Fists: §r§7Strongly boosts your Knockback.",
+  "tooltip.ancientcores.dynamo_core_leggings": "§o§eLudicrous Speed: §r§7greatly increases your movement speed",
   "tooltip.ancientcores.dynamo_core_boots": "§o§eForce Jump: §r§7Give you an extreme Jump boost and make you completely resistant to fall damage.",
   "tooltip.ancientcores.dynamo_core_helmet": "§o§eQuick Stab: §r§7Boosts your Attack Speed.",
   "tooltip.ancientcores.dynamo_core_tool": "§o§eDynamo Boost: §r§7Right click to gain speed, haste or jump boost. (You receive the first effect you don't have)",

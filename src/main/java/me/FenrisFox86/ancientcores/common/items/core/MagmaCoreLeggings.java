@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MagmaCoreLeggings extends ArmorItem implements ICoreItem {
 
-    private final CoreType coreType = CoreType.MAGMA;
+    private final CoreType core = CoreType.MAGMA;
 
     public MagmaCoreLeggings() {
         super(
@@ -64,6 +64,11 @@ public class MagmaCoreLeggings extends ArmorItem implements ICoreItem {
                 2.0,
                 AttributeModifier.Operation.MULTIPLY_BASE));
         return modifiers;
+    }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
     }
 }
 

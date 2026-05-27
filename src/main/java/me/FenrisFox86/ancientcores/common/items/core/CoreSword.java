@@ -83,5 +83,10 @@ public class CoreSword extends SwordItem implements ICoreItem {
     public boolean isFireResistant() {
         return core.isFireResistant();
     }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
+    }
 }
 

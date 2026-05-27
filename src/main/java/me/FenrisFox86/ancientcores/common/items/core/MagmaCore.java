@@ -3,6 +3,7 @@ package me.FenrisFox86.ancientcores.common.items.core;
 import me.FenrisFox86.ancientcores.AncientCores;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
@@ -58,31 +61,21 @@ public class MagmaCore extends Item implements ICoreItem {
         return true;
     }
 
-    /*@Override
-    public void inventoryTick(@Nonnull ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof LivingEntity) {
-            LivingEntity living = (LivingEntity) entityIn;
-
-            if (stack.getItem() instanceof CoreArmorItem && ((ICoreItem) stack.getItem()).getCore().equals(ItemInit.MAGMA_CORE_SET.get("CORE").get())
-                    && ((CoreArmorItem) stack.getItem()).equipmentSlotType.equals(EquipmentSlotType.FEET) && living.getItemBySlot(EquipmentSlotType.FEET) == stack) {
-                MagmaWalkerLogic.replaceField(BlockInit.MAGMA_FLOOR.get().defaultBlockState(), living.blockPosition().below(), worldIn, 3, 1);
-            }
-
-            if (stack.getItem() instanceof ICoreItem && ((ICoreItem) stack.getItem()).getCore().equals(ItemInit.MAGMA_CORE_SET.get("CORE").get())) {
-                if (entityIn.isOnFire()) {
-                    stack.hurtAndBreak(-8, living, p -> p.broadcastBreakEvent(Objects.requireNonNull(stack.getEquipmentSlot())));
-                }
-            }
-        }
-    }*/
-
-    /*@SubscribeEvent
+    @SubscribeEvent
     public static void onLivingBurn(LivingDamageEvent event) {
         LivingEntity living = event.getEntityLiving();
         for (ItemStack stack: living.getAllSlots()) {
-            if (CoreItem.isCoreItem(stack, (CoreItem) ItemInit.MAGMA_CORE_SET.get("CORE").get())) {
-                if (event.getSource().isFire()) event.setCanceled(true);
-            }
+            Item item = stack.getItem();
+            //LoggerFactory.getLogger(MagmaCore.class).debug("living burn with item: " + item);
+            if (!(item instanceof ICoreItem)) continue;
+            if (!((ICoreItem)item).getCoreType().equals(CoreType.MAGMA)) continue;
+            event.setAmount(0);
+            event.setCanceled(true);
         } 
-    }*/
+    }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
+    }
 }

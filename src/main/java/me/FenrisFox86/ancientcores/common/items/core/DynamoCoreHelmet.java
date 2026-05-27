@@ -15,7 +15,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,9 +22,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class DynamoCoreHelmet extends ArmorItem {
+public class DynamoCoreHelmet extends ArmorItem implements ICoreItem {
 
-    public static final ICoreType coreType = CoreType.DYNAMO;
+    public static final ICoreType core = CoreType.DYNAMO;
 
     public static final AttributeModifier ATTACK_SPEED_MODIFIER = new AttributeModifier(
             AncientCores.MOD_ID + ":dynamo_core_chestplate:attack_speed_boost",
@@ -54,12 +53,12 @@ public class DynamoCoreHelmet extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        TooltipUtil.appendCoreItemHoverText(tooltip, coreType.getName(), "dynamo_core_helmet");
+        TooltipUtil.appendCoreItemHoverText(tooltip, core.getName(), "dynamo_core_helmet");
     }
 
     @Override
     public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
-        coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override
@@ -70,5 +69,10 @@ public class DynamoCoreHelmet extends ArmorItem {
                 ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
         modifiers.put(Attributes.ATTACK_SPEED, DynamoCoreHelmet.ATTACK_SPEED_MODIFIER);
         return modifiers;
+    }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
     }
 }

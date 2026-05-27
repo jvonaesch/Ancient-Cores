@@ -24,7 +24,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class MagmaCoreChestplate extends ArmorItem implements ICoreItem {
-    private final CoreType coreType = CoreType.MAGMA;
+
+    private final CoreType core = CoreType.MAGMA;
 
     public MagmaCoreChestplate() {
         super(
@@ -52,7 +53,7 @@ public class MagmaCoreChestplate extends ArmorItem implements ICoreItem {
 
     @Override
     public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
-        coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override
@@ -66,6 +67,11 @@ public class MagmaCoreChestplate extends ArmorItem implements ICoreItem {
                 4.0,
                 AttributeModifier.Operation.ADDITION));
         return modifiers;
+    }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
     }
 }
 

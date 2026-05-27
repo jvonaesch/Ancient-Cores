@@ -99,5 +99,10 @@ public class CoreBroadsword extends BroadswordItem implements ICoreItem {
         super.releaseUsing(stack, world, living, timeLeft);
         if (timeLeft > 0) core.use(world, living, Hand.MAIN_HAND);
     }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
+    }
 }
 

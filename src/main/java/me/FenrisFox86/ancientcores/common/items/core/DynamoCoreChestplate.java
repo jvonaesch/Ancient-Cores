@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -14,7 +15,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,18 +22,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class DynamoCoreChestplate extends ArmorItem {
+public class DynamoCoreChestplate extends ArmorItem implements ICoreItem {
 
-    public static final ICoreType coreType = CoreType.DYNAMO;
-
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
+    public static final ICoreType core = CoreType.DYNAMO;
 
     public DynamoCoreChestplate() {
         super(
                 ModArmorMaterial.DYNAMO_CORE_ARMOR,
                 EquipmentSlotType.CHEST,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override
@@ -50,7 +47,7 @@ public class DynamoCoreChestplate extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        TooltipUtil.appendCoreItemHoverText(tooltip, coreType.getName(), "dynamo_core_chestplate");
+        TooltipUtil.appendCoreItemHoverText(tooltip, core.getName(), "dynamo_core_chestplate");
     }
 
     @Override
@@ -60,7 +57,7 @@ public class DynamoCoreChestplate extends ArmorItem {
             @Nonnull Entity entityIn,
             int itemSlot,
             boolean isSelected) {
-        coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override
@@ -74,5 +71,10 @@ public class DynamoCoreChestplate extends ArmorItem {
                 5.0,
                 AttributeModifier.Operation.ADDITION));
         return modifiers;
+    }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
     }
 }

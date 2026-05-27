@@ -88,5 +88,10 @@ public class CoreShovel extends ShovelItem implements ICoreItem {
     public boolean isFireResistant() {
         return core.isFireResistant();
     }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
+    }
 }
 

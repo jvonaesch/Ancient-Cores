@@ -1,14 +1,11 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
-import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import me.FenrisFox86.ancientcores.core.util.tools.ModItemTier;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -16,7 +13,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -26,10 +22,35 @@ public enum CoreType implements ICoreType {
             @Override
             @Nonnull
             public ActionResult<ItemStack> use(
-                    World worldIn,
-                    LivingEntity playerIn,
-                    Hand handIn) {
-                return ActionResult.pass(playerIn.getItemInHand(handIn));
+                    World world,
+                    LivingEntity living,
+                    Hand hand) {
+                if (living.isOnFire()) living.setSecondsOnFire(0);
+                return ActionResult.pass(living.getItemInHand(hand));
+            }
+
+            @Override
+            public boolean onLeftClickEntity(
+                    ItemStack stack,
+                    LivingEntity player,
+                    Entity entity) {
+                entity.setSecondsOnFire(10);
+                return false;
+            }
+
+            @Override
+            public void inventoryTick(
+                    @Nonnull ItemStack stack,
+                    @Nonnull World world,
+                    @Nonnull Entity entity,
+                    int itemSlot,
+                    boolean isSelected) {
+                if (world.getGameTime() % 20 > 0) return;
+                if (!stack.getItem().canBeDepleted()) return;
+                if (!entity.isOnFire()) return;
+                if (!(entity instanceof LivingEntity)) return;
+                stack.hurtAndBreak(-1, (LivingEntity) entity, p ->
+                        p.broadcastBreakEvent(Objects.requireNonNull(stack.getEquipmentSlot())));
             }
     },
     DYNAMO("dynamo_core", ModItemTier.DYNAMO_CORE, ModArmorMaterial.DYNAMO_CORE_ARMOR) {

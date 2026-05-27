@@ -88,4 +88,10 @@ public class CoreAxe extends AxeItem implements ICoreItem {
     public boolean isFireResistant() {
         return core.isFireResistant();
     }
+
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
+    }
 }

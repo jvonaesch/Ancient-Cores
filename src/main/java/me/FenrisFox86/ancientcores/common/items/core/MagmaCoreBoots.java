@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MagmaCoreBoots extends ArmorItem implements ICoreItem {
 
-    private final CoreType coreType = CoreType.MAGMA;
+    private final CoreType core = CoreType.MAGMA;
 
     public MagmaCoreBoots() {
         super(
@@ -54,7 +54,12 @@ public class MagmaCoreBoots extends ArmorItem implements ICoreItem {
                 worldIn,
                 3,
                 1);
-        coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
     }
 }
 

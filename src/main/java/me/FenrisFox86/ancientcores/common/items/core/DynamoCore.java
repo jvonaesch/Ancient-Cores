@@ -92,4 +92,9 @@ public class DynamoCore extends Item implements ICoreItem {
             event.setCanceled(true);
         }
     }*/
+
+    @Override
+    public ICoreType getCoreType() {
+        return core;
+    }
 }
