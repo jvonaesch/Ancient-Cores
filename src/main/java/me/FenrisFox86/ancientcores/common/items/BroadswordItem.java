@@ -47,7 +47,6 @@ public class BroadswordItem extends SwordItem {
             @Nonnull World worldIn,
             @Nonnull PlayerEntity player,
             @Nonnull Hand handIn) {
-
         ItemStack stack = player.getItemInHand(handIn);
         if (!player.getItemInHand(Hand.OFF_HAND).isEmpty()) return ActionResult.fail(stack);
         if (!player.getCooldowns().isOnCooldown(this)) {

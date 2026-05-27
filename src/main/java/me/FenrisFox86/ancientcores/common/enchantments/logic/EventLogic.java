@@ -3,6 +3,7 @@ package me.FenrisFox86.ancientcores.common.enchantments.logic;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -31,12 +32,13 @@ public class EventLogic {
         Iterable<ItemStack> equipment = living.getAllSlots();
 
         //Magma Walker
-        for(ItemStack stack: equipment) {
-            if (getItemEnchantmentLevel(MAGMA_WALKER.get(), stack) > 0)
-                MagmaWalkerLogic.replaceField(
-                        MAGMA_FLOOR.get().defaultBlockState(),
-                        living.blockPosition().below(),
-                        world, 2, 1);
+        if (getItemEnchantmentLevel(
+                MAGMA_WALKER.get(),
+                living.getItemBySlot(EquipmentSlotType.FEET)) > 0) {
+            MagmaWalkerLogic.replaceField(
+                    MAGMA_FLOOR.get().defaultBlockState(),
+                    living.blockPosition().below(),
+                    world, 2, 1);
         }
 
         //Dynamo

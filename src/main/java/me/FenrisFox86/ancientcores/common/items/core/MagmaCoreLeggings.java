@@ -3,7 +3,7 @@ package me.FenrisFox86.ancientcores.common.items.core;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
-import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.util.TooltipUtil;
 import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;

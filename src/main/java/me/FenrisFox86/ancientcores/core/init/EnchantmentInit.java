@@ -27,16 +27,19 @@ public class EnchantmentInit {
 
     public static final EnchantmentType AXE_TYPE = EnchantmentType.create("axe", item -> item instanceof AxeItem);
     public static final EnchantmentType ARMOR_FEET_NON_MAGMA = EnchantmentType.create(
-            "boots_non_magma", item -> {
-                if (!(item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlotType.FEET)) return false;
-                return !(item instanceof ICoreItem) || ((ICoreItem) item).getCoreType() != CoreType.MAGMA;
-            });
+            "boots_non_magma", item -> (
+                    (item instanceof ArmorItem) && ((ArmorItem)item).getSlot() == EquipmentSlotType.FEET
+                    && !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.MAGMA)));
+    public static final EnchantmentType BREAKABLE_NON_DYNAMO = EnchantmentType.create(
+            "breakable_non_dynamo", item -> (
+                    item.canBeDepleted()
+                    && !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.DYNAMO)));
 
     //Enchantments
     public static final RegistryObject<Enchantment> DYNAMO_REPAIR = ENCHANTMENTS.register("dynamo_repair", ()
             -> new DynamoRepair(
             Enchantment.Rarity.VERY_RARE,
-            EnchantmentType.BREAKABLE,
+            BREAKABLE_NON_DYNAMO,
             new EquipmentSlotType[]{
                     EquipmentSlotType.MAINHAND,
                     EquipmentSlotType.FEET,

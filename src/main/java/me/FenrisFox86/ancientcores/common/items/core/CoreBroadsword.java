@@ -2,7 +2,7 @@ package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.BroadswordItem;
-import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.util.TooltipUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

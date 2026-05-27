@@ -1,7 +1,7 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
-import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.util.TooltipUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
@@ -77,6 +77,9 @@ public class CoreAxe extends AxeItem implements ICoreItem {
             int itemSlot,
             boolean isSelected) {
         this.core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+        /*for (ItemStack equipped: entityIn.getAllSlots()) if (equipped == stack) {
+            this.core.equipmentTick(stack, worldIn, entityIn, itemSlot);
+        }*/
     }
 
     @Override

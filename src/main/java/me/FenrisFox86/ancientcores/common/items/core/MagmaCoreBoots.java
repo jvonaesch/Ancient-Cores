@@ -1,7 +1,7 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.common.enchantments.logic.MagmaWalkerLogic;
-import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.util.TooltipUtil;
 import me.FenrisFox86.ancientcores.core.init.BlockInit;
 import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;

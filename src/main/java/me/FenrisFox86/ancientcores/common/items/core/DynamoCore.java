@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-import static me.FenrisFox86.ancientcores.common.items.TooltipUtil.appendCoreToolHoverText;
+import static me.FenrisFox86.ancientcores.core.util.TooltipUtil.appendCoreToolHoverText;
 
 @Mod.EventBusSubscriber
 public class DynamoCore extends Item implements ICoreItem {

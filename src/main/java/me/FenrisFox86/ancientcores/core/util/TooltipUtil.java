@@ -1,5 +1,6 @@
-package me.FenrisFox86.ancientcores.common.items;
+package me.FenrisFox86.ancientcores.core.util;
 
+import me.FenrisFox86.ancientcores.common.items.Tooltips;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.util.text.ITextComponent;
