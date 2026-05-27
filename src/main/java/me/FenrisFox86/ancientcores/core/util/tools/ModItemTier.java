@@ -37,7 +37,7 @@ public enum ModItemTier implements IItemTier {
     }),
 
     MAGMA_CORE(5, 2604, 10.0F, 28.0F, 48, () -> {
-        return Ingredient.of(ItemInit.MAGMA_CORE_SET.get("CORE").get());
+        return Ingredient.of(ItemInit.MAGMA_CORE.get());
     });
 
     private final int harvestlevel;

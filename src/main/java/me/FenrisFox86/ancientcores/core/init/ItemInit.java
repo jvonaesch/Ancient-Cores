@@ -22,12 +22,13 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AncientCores.MOD_ID);
     public static Map<String, Item> ITEM_MAP = new HashMap<>();
 
-    static Item.Properties ItemTabProps() {
-        return new Item.Properties().tab(AncientCores.MOD_TAB);
+    public static Item.Properties defaultProperties() {
+        return new Item.Properties()
+                .tab(AncientCores.MOD_TAB);
     }
 
     public static RegistryObject<Item> addItem(String name) {
-        Item item = new Item(ItemTabProps());
+        Item item = new Item(defaultProperties());
         ITEM_MAP.put(name, item);
         return ITEMS.register(name, () -> item);
     }
@@ -82,92 +83,72 @@ public class ItemInit {
         return MAP;
     }
 
-    public static Map<String, RegistryObject<Item>> addCoreSet(CoreItem core) {
-        Map<String, RegistryObject<Item>> MAP = new HashMap() {};
-
-        MAP.put("CORE", addItem(core.name, core));
-
-        MAP.put("SWORD", addItem(core.name+"_sword", new CoreSword(core, 2, -1.0F)));
-        MAP.put("AXE", addItem(core.name+"_axe", new CoreAxe(core, 3, -2.0F)));
-        MAP.put("PICKAXE", addItem(core.name+"_pickaxe", new CorePickaxe(core, 2, -2.0F)));
-        MAP.put("HOE", addItem(core.name+"_hoe", new CoreHoe(core, 0, -2.0F)));
-        MAP.put("SHOVEL", addItem(core.name+"_shovel", new CoreShovel(core, 1, -2.0F)));
-        MAP.put("KATANA", addItem(core.name+"_katana", new CoreKatana(core, 2, -1.5F)));
-        MAP.put("HAMMER", addItem(core.name+"_hammer", new CoreHammer(core, 4, -1.5F)));
-        MAP.put("BROADSWORD", addItem(core.name+"_broadsword", new CoreBroadsword(core, 6, -3.0F)));
-        MAP.put("DAGGER", addItem(core.name+"_dagger", new CoreDagger(core, 0, -0.0F)));
-
-        MAP.put("HELMET", addItem(core.name+"_helmet", new CoreArmorItem(core, EquipmentSlotType.HEAD)));
-        MAP.put("CHESTPLATE", addItem(core.name+"_chestplate", new CoreArmorItem(core, EquipmentSlotType.CHEST)));
-        MAP.put("LEGGINGS", addItem(core.name+"_leggings", new CoreArmorItem(core, EquipmentSlotType.LEGS)));
-        MAP.put("BOOTS", addItem(core.name+"_boots", new CoreArmorItem(core, EquipmentSlotType.FEET)));
-
-        return MAP;
-    }
-
     public static void ItemInit() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     public static final RegistryObject<Item>
 
-        RUBY = addItem("ruby"),
-        SAPPHIRE = addItem("sapphire"),
-        PYRITE = addItem("pyrite"),
-        LEAD = addItem("lead"),
-        TIN = addItem("tin"),
-        CASSITERITE = addItem("cassiterite"),
-        GALENITE = addItem("galenite"),
+    RUBY = addItem("ruby"),
+    SAPPHIRE = addItem("sapphire"),
+    PYRITE = addItem("pyrite"),
+    LEAD = addItem("lead"),
+    TIN = addItem("tin"),
+    CASSITERITE = addItem("cassiterite"),
+    GALENITE = addItem("galenite"),
 
-        CORE_VESSEL = addItem("core_vessel"),
-        CORE_VESSEL_HELMET = addItem("core_vessel_helmet", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_CHESTPLATE = addItem("core_vessel_chestplate", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_LEGGINGS = addItem("core_vessel_leggings", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_BOOTS = addItem("core_vessel_boots", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_SWORD = addItem("core_vessel_sword", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_PICKAXE = addItem("core_vessel_pickaxe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_AXE = addItem("core_vessel_axe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_SHOVEL = addItem("core_vessel_shovel", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_HOE = addItem("core_vessel_hoe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_HAMMER = addItem("core_vessel_hammer", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_KATANA = addItem("core_vessel_katana", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_DAGGER = addItem("core_vessel_dagger", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
-        CORE_VESSEL_BROADSWORD = addItem("core_vessel_broadsword", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL = addItem("core_vessel"),
+    CORE_VESSEL_HELMET = addItem("core_vessel_helmet", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_CHESTPLATE = addItem("core_vessel_chestplate", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_LEGGINGS = addItem("core_vessel_leggings", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_BOOTS = addItem("core_vessel_boots", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_SWORD = addItem("core_vessel_sword", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_PICKAXE = addItem("core_vessel_pickaxe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_AXE = addItem("core_vessel_axe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_SHOVEL = addItem("core_vessel_shovel", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_HOE = addItem("core_vessel_hoe", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_HAMMER = addItem("core_vessel_hammer", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_KATANA = addItem("core_vessel_katana", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_DAGGER = addItem("core_vessel_dagger", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
+    CORE_VESSEL_BROADSWORD = addItem("core_vessel_broadsword", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),
 
-        DYNAMO_CORE = addItem("dynamo_core", new DynamoCore()),
-        DYNAMO_HELMET = addItem("dynamo_core_helmet", new DynamoCoreHelmet()),
-        DYNAMO_CHESTPLATE = addItem("dynamo_core_chestplate", new DynamoCoreChestplate()),
-        DYNAMO_LEGGINGS = addItem("dynamo_core_leggings", new DynamoCoreLeggings()),
-        DYNAMO_BOOTS = addItem("dynamo_core_boots", new DynamoCoreBoots()),
-        /*DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword((CoreItem)DYNAMO_CORE.get(), 2, -1.0F)),
-        DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe((CoreItem)DYNAMO_CORE.get(), 3, -2.0F)),
-        DYNAMO_PICKAXE = addItem("dynamo_core_pickaxe", new CorePickaxe((CoreItem)DYNAMO_CORE.get(), 2, -2.0F)),
-        DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe((CoreItem)DYNAMO_CORE.get(), 0, -2.0F)),
-        DYNAMO_SHOVEL = addItem("dynamo_core_shovel", new CoreShovel((CoreItem)DYNAMO_CORE.get(), 1, -2.0F)),
-        DYNAMO_KATANA = addItem("dynamo_core_katana", new CoreKatana((CoreItem)DYNAMO_CORE.get(), 2, -1.5F)),
-        DYNAMO_HAMMER = addItem("dynamo_core_hammer", new CoreHammer((CoreItem)DYNAMO_CORE.get(), 4, -1.5F)),
-        DYNAMO_BROADSWORD = addItem("dynamo_core_broadsword", new CoreBroadsword((CoreItem)DYNAMO_CORE.get(), 6, -3.0F)),
-        DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger((CoreItem)DYNAMO_CORE.get(), 0, -0.0F)),
-        */
+    DYNAMO_CORE = addItem("dynamo_core", new DynamoCore()),
+    DYNAMO_HELMET = addItem("dynamo_core_helmet", new DynamoCoreHelmet()),
+    DYNAMO_CHESTPLATE = addItem("dynamo_core_chestplate", new DynamoCoreChestplate()),
+    DYNAMO_LEGGINGS = addItem("dynamo_core_leggings", new DynamoCoreLeggings()),
+    DYNAMO_BOOTS = addItem("dynamo_core_boots", new DynamoCoreBoots()),
+    DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe(CoreType.DYNAMO, 3, -2.0F)),
+    /*DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword((CoreItem)DYNAMO_CORE.get(), 2, -1.0F)),
+    DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe((CoreItem)DYNAMO_CORE.get(), 3, -2.0F)),
+    DYNAMO_PICKAXE = addItem("dynamo_core_pickaxe", new CorePickaxe((CoreItem)DYNAMO_CORE.get(), 2, -2.0F)),
+    DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe((CoreItem)DYNAMO_CORE.get(), 0, -2.0F)),
+    DYNAMO_SHOVEL = addItem("dynamo_core_shovel", new CoreShovel((CoreItem)DYNAMO_CORE.get(), 1, -2.0F)),
+    DYNAMO_KATANA = addItem("dynamo_core_katana", new CoreKatana((CoreItem)DYNAMO_CORE.get(), 2, -1.5F)),
+    DYNAMO_HAMMER = addItem("dynamo_core_hammer", new CoreHammer((CoreItem)DYNAMO_CORE.get(), 4, -1.5F)),
+    DYNAMO_BROADSWORD = addItem("dynamo_core_broadsword", new CoreBroadsword((CoreItem)DYNAMO_CORE.get(), 6, -3.0F)),
+    DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger((CoreItem)DYNAMO_CORE.get(), 0, -0.0F)),
+    */
 
-        BRONZE_INGOT = addItem("bronze_ingot"),
-        BRONZE_NUGGET = addItem("bronze_nugget"),
-        VESSEL_BRONZE_INGOT = addItem("vessel_bronze_ingot"),
-        SILVER_INGOT = addItem("silver_ingot"),
-        SILVER_NUGGET = addItem("silver_nugget"),
-        COPPER_INGOT = addItem("copper_ingot"),
+    MAGMA_CORE = addItem("magma_core", new MagmaCore()),
 
-        ESSENCE = addItem("essence"),
-        ESSENCE_INGOT = addItem("essence_ingot"),
+    BRONZE_INGOT = addItem("bronze_ingot"),
+    BRONZE_NUGGET = addItem("bronze_nugget"),
+    VESSEL_BRONZE_INGOT = addItem("vessel_bronze_ingot"),
+    SILVER_INGOT = addItem("silver_ingot"),
+    SILVER_NUGGET = addItem("silver_nugget"),
+    COPPER_INGOT = addItem("copper_ingot"),
 
-        IRON_ROD = addItem("iron_rod"),
-        SILVER_ROD = addItem("silver_rod"),
-        BRONZE_ROD = addItem("bronze_rod"),
-        GOLD_ROD = addItem("gold_rod"),
+    ESSENCE = addItem("essence"),
+    ESSENCE_INGOT = addItem("essence_ingot"),
 
-        RAYHANS_CHEESE = addItem("rayhans_cheese", new ItemBase((new Item.Properties()).tab(AncientCores.MOD_TAB)
-                .rarity(Rarity.EPIC).food(ModFoods.RAYHANS_CHEESE)).foilEffect().description("tooltip.ancientcores.rayhans_cheese.lore")
-                .description("tooltip.ancientcores.rayhans_cheese.desc"));
+    IRON_ROD = addItem("iron_rod"),
+    SILVER_ROD = addItem("silver_rod"),
+    BRONZE_ROD = addItem("bronze_rod"),
+    GOLD_ROD = addItem("gold_rod"),
+
+    RAYHANS_CHEESE = addItem("rayhans_cheese", new ItemBase((new Item.Properties()).tab(AncientCores.MOD_TAB)
+            .rarity(Rarity.EPIC).food(ModFoods.RAYHANS_CHEESE)).foilEffect().description("tooltip.ancientcores.rayhans_cheese.lore")
+            .description("tooltip.ancientcores.rayhans_cheese.desc"));
 
     public static final Map<String, RegistryObject<Item>>
         RUBY_TOOLSET = addToolSet("ruby", ModItemTier.RUBY),
@@ -187,8 +168,5 @@ public class ItemInit {
         IRON_TOOLSET = completeToolSet("iron", ItemTier.IRON, null),
         GOLD_TOOLSET = completeToolSet("gold", ItemTier.GOLD, null),
         DIAMOND_TOOLSET = completeToolSet("diamond", ItemTier.DIAMOND, null),
-        NETHERITE_TOOLSET = completeToolSet("netherite", ItemTier.NETHERITE, null),
-
-        // DYNAMO_CORE_SET = addCoreSet(new DynamoCore())addItem(core.name+"_boots", new CoreArmorItem(core, EquipmentSlotType.FEET)));
-        MAGMA_CORE_SET = addCoreSet(new MagmaCore());
+        NETHERITE_TOOLSET = completeToolSet("netherite", ItemTier.NETHERITE, null);
 }

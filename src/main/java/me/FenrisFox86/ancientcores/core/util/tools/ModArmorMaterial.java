@@ -40,7 +40,7 @@ public enum ModArmorMaterial implements IArmorMaterial {
     }),
     MAGMA_CORE_ARMOR("magma_core", 50, new int[] {20, 20, 30, 30}, ModItemTier.MAGMA_CORE.getEnchantmentValue(),
             SoundEvents.ARMOR_EQUIP_IRON, 5.0f,0.5f, () -> {
-        return Ingredient.of(ItemInit.MAGMA_CORE_SET.get("CORE").get());
+        return Ingredient.of(ItemInit.MAGMA_CORE.get());
     })
     ;
 

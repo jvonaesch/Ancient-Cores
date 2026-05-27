@@ -1,6 +1,7 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
+import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,48 +19,62 @@ import java.util.List;
 
 public class CoreAxe extends AxeItem implements ICoreItem {
 
-    public final String name;
-    public final CoreItem core;
+    public final ICoreType core;
 
-    public CoreAxe(CoreItem core, int attackDamageIn, float attackSpeedIn) {
-        super(core.itemTier, attackDamageIn, attackSpeedIn, new Properties().tab(AncientCores.MOD_TAB));
-        this.name = core.name + "_axe";
+    public CoreAxe(ICoreType core, int attackDamageIn, float attackSpeedIn) {
+        super(
+                core.getItemTier(),
+                attackDamageIn,
+                attackSpeedIn,
+                new Properties().tab(AncientCores.MOD_TAB));
         this.core = core;
     }
 
     @Override
-    public boolean isFoil(@Nonnull ItemStack stack) { return core.isFoil(stack); }
+    public boolean isFoil(@Nonnull ItemStack stack) {
+        return core.isFoil();
+    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
+    public void appendHoverText(
+            @Nonnull ItemStack stack,
+            World worldIn,
+            @Nonnull List<ITextComponent> tooltip,
+            @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        CoreItem.appendHoverText(tooltip, this.core.name);
+        TooltipUtil.appendCoreToolHoverText(tooltip, core.getName());
     }
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> use(@Nonnull World worldIn, @Nonnull PlayerEntity playerIn, @Nonnull Hand handIn) {
+    public ActionResult<ItemStack> use(
+            @Nonnull World worldIn,
+            @Nonnull PlayerEntity playerIn,
+            @Nonnull Hand handIn) {
         return core.useCoreItem(worldIn, playerIn, handIn, this);
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
+    public boolean onLeftClickEntity(
+            ItemStack stack,
+            PlayerEntity player,
+            Entity entity) {
         return this.core.onLeftClickEntity(stack, player, entity);
     }
 
     @Override
-    public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(
+            @Nonnull ItemStack stack,
+            @Nonnull World worldIn,
+            @Nonnull Entity entityIn,
+            int itemSlot,
+            boolean isSelected) {
         this.core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override
     public boolean isFireResistant() {
         return core.isFireResistant();
-    }
-
-    @Override
-    public CoreItem getCore() {
-        return core;
     }
 }

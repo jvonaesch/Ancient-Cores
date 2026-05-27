@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "ancientcores:magma_core_helmet",
+    "ancientcores:magma_core_chestplate",
+    "ancientcores:magma_core_leggings",
+    "ancientcores:magma_core_boots",
+    "ancientcores:magma_core_sword",
+    "ancientcores:magma_core_axe",
+    "ancientcores:magma_core_pickaxe",
+    "ancientcores:magma_core_hoe",
+    "ancientcores:magma_core_shovel",
+    "ancientcores:magma_core_hammer",
+    "ancientcores:magma_core_dagger",
+    "ancientcores:magma_core_broadsword",
+    "ancientcores:magma_core"
+  ]
+}

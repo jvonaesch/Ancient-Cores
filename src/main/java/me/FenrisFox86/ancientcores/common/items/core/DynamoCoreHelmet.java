@@ -3,6 +3,7 @@ package me.FenrisFox86.ancientcores.common.items.core;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
+import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -22,6 +23,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class DynamoCoreHelmet extends ArmorItem {
+
+    public static final ICoreType coreType = CoreType.DYNAMO;
 
     public static final Properties properties = new Properties()
             .tab(AncientCores.MOD_TAB);
@@ -53,13 +56,12 @@ public class DynamoCoreHelmet extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("tooltip.ancientcores.dynamo_core_helmet"));
-        tooltip.add(new TranslationTextComponent("tooltip.ancientcores.dynamo_core_passive"));
+        TooltipUtil.appendCoreItemHoverText(tooltip, coreType.getName(), "dynamo_core_helmet");
     }
 
     @Override
     public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
-        DynamoCore.dynamoItemTick(stack, worldIn, entityIn, itemSlot, isSelected);
+        coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override

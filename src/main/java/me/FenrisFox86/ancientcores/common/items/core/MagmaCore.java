@@ -1,16 +1,9 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
-import me.FenrisFox86.ancientcores.common.enchantments.logic.MagmaWalkerLogic;
-import me.FenrisFox86.ancientcores.core.init.BlockInit;
-import me.FenrisFox86.ancientcores.core.init.ItemInit;
-import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
-import me.FenrisFox86.ancientcores.core.util.tools.ModItemTier;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -19,50 +12,45 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.Objects;
+
+import static me.FenrisFox86.ancientcores.common.items.TooltipUtil.appendCoreToolHoverText;
 
 @Mod.EventBusSubscriber
-public class MagmaCore extends CoreItem {
+public class MagmaCore extends Item implements ICoreItem {
+
+    public static final ICoreType core = CoreType.MAGMA;
 
     public MagmaCore() {
-        super("magma_core", new Properties().tab(AncientCores.MOD_TAB).durability(256));
-        this.itemTier = ModItemTier.MAGMA_CORE;
-        this.armorMaterial = ModArmorMaterial.MAGMA_CORE_ARMOR;
+        super(new Properties().tab(AncientCores.MOD_TAB));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(
+            @Nonnull ItemStack stack,
+            World worldIn,
+            @Nonnull List<ITextComponent> tooltip,
+            @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        CoreItem.appendHoverText(tooltip, name);
+        appendCoreToolHoverText(tooltip, core.getName());
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        return this.useCoreItem(worldIn, playerIn, handIn, this);
-    }
-
-    public ActionResult<ItemStack> useCoreItem(World worldIn, PlayerEntity playerIn, Hand handIn, Item item) {
-        if(!playerIn.getCooldowns().isOnCooldown(item)) {
-            playerIn.setRemainingFireTicks(0);
-            playerIn.getItemInHand(handIn).hurtAndBreak(2, playerIn, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
-            return ActionResult.success(playerIn.getItemInHand(handIn));
-        }
-        return ActionResult.fail(playerIn.getItemInHand(handIn));
+    @Nonnull
+    public ActionResult<ItemStack> use(
+            @Nonnull World worldIn,
+            @Nonnull PlayerEntity playerIn,
+            @Nonnull Hand handIn) {
+        return core.useCoreItem(worldIn, playerIn, handIn, this);
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if(entity.isAlive()) {
-            entity.setSecondsOnFire(2000);
-        }
-        return false;
+        return core.onLeftClickEntity(stack, player, entity);
     }
 
     @Override
@@ -70,7 +58,7 @@ public class MagmaCore extends CoreItem {
         return true;
     }
 
-    @Override
+    /*@Override
     public void inventoryTick(@Nonnull ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) entityIn;
@@ -86,9 +74,9 @@ public class MagmaCore extends CoreItem {
                 }
             }
         }
-    }
+    }*/
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void onLivingBurn(LivingDamageEvent event) {
         LivingEntity living = event.getEntityLiving();
         for (ItemStack stack: living.getAllSlots()) {
@@ -96,5 +84,5 @@ public class MagmaCore extends CoreItem {
                 if (event.getSource().isFire()) event.setCanceled(true);
             }
         } 
-    }
+    }*/
 }

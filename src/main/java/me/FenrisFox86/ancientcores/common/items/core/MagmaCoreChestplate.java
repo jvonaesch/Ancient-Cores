@@ -10,11 +10,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,26 +22,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class DynamoCoreChestplate extends ArmorItem {
-
-    public static final ICoreType coreType = CoreType.DYNAMO;
+public class MagmaCoreChestplate extends ArmorItem implements ICoreItem {
+    private final CoreType coreType = CoreType.MAGMA;
 
     public static final Properties properties = new Properties()
             .tab(AncientCores.MOD_TAB);
 
-    public static final AttributeModifier KNOCKBACK_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":dynamo_core_chestplate:knockback_boost",
-            5.0,
-            AttributeModifier.Operation.ADDITION);
-
-    public static final AttributeModifier KNOCKBACK_RESISTANCE_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":dynamo_core_chestplate:knockback_resistance_boost",
-            2.0,
-            AttributeModifier.Operation.ADDITION);
-
-    public DynamoCoreChestplate() {
+    public MagmaCoreChestplate() {
         super(
-                ModArmorMaterial.DYNAMO_CORE_ARMOR,
+                ModArmorMaterial.MAGMA_CORE_ARMOR,
                 EquipmentSlotType.CHEST,
                 properties);
     }
@@ -60,17 +49,17 @@ public class DynamoCoreChestplate extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        TooltipUtil.appendCoreItemHoverText(tooltip, coreType.getName(), "dynamo_core_chestplate");
+        TooltipUtil.appendCoreItemHoverText(tooltip, "magma_core", "magma_core_chestplate");
     }
 
     @Override
-    public void inventoryTick(
-            @Nonnull ItemStack stack,
-            @Nonnull World worldIn,
-            @Nonnull Entity entityIn,
-            int itemSlot,
-            boolean isSelected) {
+    public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
         coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        super.onArmorTick(stack, world, player);
     }
 
     @Override
@@ -79,8 +68,11 @@ public class DynamoCoreChestplate extends ArmorItem {
         if (slotType != super.getSlot()) {return super.getDefaultAttributeModifiers(slotType);}
         Multimap<Attribute, AttributeModifier> modifiers =
                 ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
-        modifiers.put(Attributes.ATTACK_KNOCKBACK, DynamoCoreChestplate.KNOCKBACK_MODIFIER);
-        modifiers.put(Attributes.KNOCKBACK_RESISTANCE, DynamoCoreChestplate.KNOCKBACK_RESISTANCE_MODIFIER);
+        modifiers.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(
+                AncientCores.MOD_ID + ":magma_core_chestplate:attack_damage_boost",
+                4.0,
+                AttributeModifier.Operation.ADDITION));
         return modifiers;
     }
 }
+

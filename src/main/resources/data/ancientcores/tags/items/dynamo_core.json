@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "ancientcores:dynamo_core_helmet",
+    "ancientcores:dynamo_core_chestplate",
+    "ancientcores:dynamo_core_leggings",
+    "ancientcores:dynamo_core_boots",
+    "ancientcores:dynamo_core_sword",
+    "ancientcores:dynamo_core_axe",
+    "ancientcores:dynamo_core_pickaxe",
+    "ancientcores:dynamo_core_hoe",
+    "ancientcores:dynamo_core_shovel",
+    "ancientcores:dynamo_core_hammer",
+    "ancientcores:dynamo_core_dagger",
+    "ancientcores:dynamo_core_broadsword",
+    "ancientcores:dynamo_core"
+  ]
+}

@@ -28,49 +28,41 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Objects;
 
+import static me.FenrisFox86.ancientcores.common.items.TooltipUtil.appendCoreToolHoverText;
+
 @Mod.EventBusSubscriber
-public class DynamoCore extends CoreItem {
+public class DynamoCore extends Item implements ICoreItem {
+
+    public static final ICoreType core = CoreType.DYNAMO;
 
     public DynamoCore() {
-        super("dynamo_core", new Properties().tab(AncientCores.MOD_TAB).durability(256));
-        this.itemTier = ModItemTier.DYNAMO_CORE;
-        this.armorMaterial = ModArmorMaterial.DYNAMO_CORE_ARMOR;
+        super(new Properties().tab(AncientCores.MOD_TAB).durability(256));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(
+            @Nonnull ItemStack stack,
+            World worldIn,
+            @Nonnull List<ITextComponent> tooltip,
+            @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        CoreItem.appendHoverText(tooltip, name);
+        appendCoreToolHoverText(tooltip, core.getName());
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        return this.useCoreItem(worldIn, playerIn, handIn, this);
-    }
-
-    public ActionResult<ItemStack> useCoreItem(World worldIn, PlayerEntity playerIn, Hand handIn, Item item) {
-        if(!playerIn.getCooldowns().isOnCooldown(item)) {
-            playerIn.addEffect(new EffectInstance(Effects.JUMP, 500, 1));
-            playerIn.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 500, 4));
-            playerIn.addEffect(new EffectInstance(Effects.DIG_SPEED, 500, 4));
-            playerIn.getCooldowns().addCooldown(item,60);
-            playerIn.getItemInHand(handIn).hurtAndBreak(16, playerIn, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
-            return ActionResult.success(playerIn.getItemInHand(handIn));
-        }
-        return ActionResult.fail(playerIn.getItemInHand(handIn));
+    @Nonnull
+    public ActionResult<ItemStack> use(
+            @Nonnull World worldIn,
+            @Nonnull PlayerEntity playerIn,
+            @Nonnull Hand handIn) {
+        return core.useCoreItem(worldIn, playerIn, handIn, this);
+        // TODO: use item
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if(entity.isAlive()) {
-            ((LivingEntity) entity).addEffect(new EffectInstance(Effects.GLOWING, 100));
-            ((LivingEntity) entity).removeEffect(Effects.MOVEMENT_SPEED);
-            ((LivingEntity) entity).removeEffect(Effects.JUMP);
-            ((LivingEntity) entity).removeEffect(Effects.DIG_SPEED);
-            //entity.setSecondsOnFire(3);
-        }
-        return false;
+        return core.onLeftClickEntity(stack, player, entity);
     }
 
     @Override
@@ -79,34 +71,16 @@ public class DynamoCore extends CoreItem {
     }
 
     @Override
-    public void inventoryTick(@Nonnull ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if(worldIn.getDayTime()%20 == 0) {
-            if(stack.getItem() instanceof ICoreItem && entityIn instanceof PlayerEntity && ((ICoreItem)stack.getItem()).getCore() instanceof DynamoCore) {
-                if(entityIn.isSprinting()) {
-                    LivingEntity living = (LivingEntity) entityIn;
-                    stack.hurtAndBreak(-8, living, p ->
-                            p.broadcastBreakEvent(Objects.requireNonNull(stack.getEquipmentSlot())));
-                }
-            }
-        }
-    }
-
-    public static void dynamoItemTick (
+    public void inventoryTick(
             @Nonnull ItemStack stack,
             @Nonnull World worldIn,
             @Nonnull Entity entityIn,
             int itemSlot,
-            boolean isSelected)
-    {
-        if (worldIn.getDayTime() % 20 > 0) return;
-        if (!entityIn.isSprinting()) return;
-        if (!(entityIn instanceof LivingEntity)) return;
-        stack.hurtAndBreak(-8, (LivingEntity) entityIn, p ->
-                p.broadcastBreakEvent(Objects.requireNonNull(stack.getEquipmentSlot())));
+            boolean isSelected) {
+        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void OnLivingJump(LivingEvent.LivingJumpEvent event) {
         // TODO: replace with attribute modifier
         LivingEntity living = event.getEntityLiving();
@@ -128,5 +102,5 @@ public class DynamoCore extends CoreItem {
         if (boots instanceof CoreArmorItem && ((CoreArmorItem)boots).core instanceof DynamoCore) {
             event.setCanceled(true);
         }
-    }
+    }*/
 }

@@ -1,6 +1,8 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
 import me.FenrisFox86.ancientcores.AncientCores;
+import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -18,17 +20,11 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public class CoreArmorItem extends ArmorItem implements ICoreItem {
 
-    public final String name;
-    public final CoreItem core;
-    public final EquipmentSlotType equipmentSlotType;
+    public final ICoreType core;
 
-    public CoreArmorItem(CoreItem core, EquipmentSlotType type) {
-        super(core.armorMaterial, type, new Properties().tab(AncientCores.MOD_TAB));
-        String pieceName = type.equals(EquipmentSlotType.HEAD) ? "_helmet": type.equals(EquipmentSlotType.CHEST) ? "_chestplate":
-                type.equals(EquipmentSlotType.LEGS) ? "_leggings": "_boots";
-        this.name = core.name + pieceName;
+    public CoreArmorItem(ICoreType core, EquipmentSlotType type) {
+        super(core.getArmorMaterial(), type, ItemInit.defaultProperties());
         this.core = core;
-        this.equipmentSlotType = type;
     }
 
     @Override
@@ -39,18 +35,6 @@ public class CoreArmorItem extends ArmorItem implements ICoreItem {
     @Override
     public boolean isFoil(ItemStack stack) {
         return true;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        CoreItem.appendArmorHoverText(tooltip, core.name, this.name);
-    }
-
-    @Override
-    public CoreItem getCore() {
-        return this.core;
     }
 
     @Override
