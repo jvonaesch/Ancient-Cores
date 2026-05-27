@@ -130,6 +130,11 @@ public class ItemInit {
     */
 
     MAGMA_CORE = addItem("magma_core", new MagmaCore()),
+    MAGMA_HELMET = addItem("magma_core_helmet", new MagmaCoreHelmet()),
+    MAGMA_CHESTPLATE = addItem("magma_core_chestplate", new MagmaCoreChestplate()),
+    MAGMA_LEGGINGS = addItem("magma_core_leggings", new MagmaCoreLeggings()),
+    MAGMA_BOOTS = addItem("magma_core_boots", new MagmaCoreBoots()),
+    MAGMA_AXE = addItem("magma_core_axe", new CoreAxe(CoreType.MAGMA, 3, -2.0F)),
 
     BRONZE_INGOT = addItem("bronze_ingot"),
     BRONZE_NUGGET = addItem("bronze_nugget"),

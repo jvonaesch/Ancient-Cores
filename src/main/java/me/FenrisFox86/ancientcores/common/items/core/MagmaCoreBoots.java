@@ -6,6 +6,7 @@ import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.enchantments.logic.MagmaWalkerLogic;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
 import me.FenrisFox86.ancientcores.core.init.BlockInit;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -28,19 +29,11 @@ public class MagmaCoreBoots extends ArmorItem implements ICoreItem {
 
     private final CoreType coreType = CoreType.MAGMA;
 
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
-
-    public static final AttributeModifier MOVEMENT_SPEED_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":magma_core_boots:movement_speed_boost",
-            0.5,
-            AttributeModifier.Operation.MULTIPLY_BASE);
-
     public MagmaCoreBoots() {
         super(
                 ModArmorMaterial.MAGMA_CORE_ARMOR,
                 EquipmentSlotType.FEET,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override
@@ -76,7 +69,7 @@ public class MagmaCoreBoots extends ArmorItem implements ICoreItem {
         coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    @Override
+    /*@Override
     public @Nonnull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(
             @Nonnull EquipmentSlotType slotType) {
         if (slotType != super.getSlot()) {return super.getDefaultAttributeModifiers(slotType);}
@@ -84,6 +77,6 @@ public class MagmaCoreBoots extends ArmorItem implements ICoreItem {
                 ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
         modifiers.put(Attributes.MOVEMENT_SPEED, MagmaCoreBoots.MOVEMENT_SPEED_MODIFIER);
         return modifiers;
-    }
+    }*/
 }
 

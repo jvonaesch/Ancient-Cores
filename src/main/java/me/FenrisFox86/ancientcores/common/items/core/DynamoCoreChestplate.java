@@ -29,16 +29,6 @@ public class DynamoCoreChestplate extends ArmorItem {
     public static final Properties properties = new Properties()
             .tab(AncientCores.MOD_TAB);
 
-    public static final AttributeModifier KNOCKBACK_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":dynamo_core_chestplate:knockback_boost",
-            5.0,
-            AttributeModifier.Operation.ADDITION);
-
-    public static final AttributeModifier KNOCKBACK_RESISTANCE_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":dynamo_core_chestplate:knockback_resistance_boost",
-            2.0,
-            AttributeModifier.Operation.ADDITION);
-
     public DynamoCoreChestplate() {
         super(
                 ModArmorMaterial.DYNAMO_CORE_ARMOR,
@@ -79,8 +69,10 @@ public class DynamoCoreChestplate extends ArmorItem {
         if (slotType != super.getSlot()) {return super.getDefaultAttributeModifiers(slotType);}
         Multimap<Attribute, AttributeModifier> modifiers =
                 ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
-        modifiers.put(Attributes.ATTACK_KNOCKBACK, DynamoCoreChestplate.KNOCKBACK_MODIFIER);
-        modifiers.put(Attributes.KNOCKBACK_RESISTANCE, DynamoCoreChestplate.KNOCKBACK_RESISTANCE_MODIFIER);
+        modifiers.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(
+                AncientCores.MOD_ID + ":dynamo_core_chestplate:knockback_boost",
+                5.0,
+                AttributeModifier.Operation.ADDITION));
         return modifiers;
     }
 }

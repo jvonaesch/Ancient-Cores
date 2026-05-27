@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -26,9 +27,6 @@ public class DynamoCoreHelmet extends ArmorItem {
 
     public static final ICoreType coreType = CoreType.DYNAMO;
 
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
-
     public static final AttributeModifier ATTACK_SPEED_MODIFIER = new AttributeModifier(
             AncientCores.MOD_ID + ":dynamo_core_chestplate:attack_speed_boost",
             1.5,
@@ -39,7 +37,7 @@ public class DynamoCoreHelmet extends ArmorItem {
         super(
                 ModArmorMaterial.DYNAMO_CORE_ARMOR,
                 EquipmentSlotType.HEAD,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override

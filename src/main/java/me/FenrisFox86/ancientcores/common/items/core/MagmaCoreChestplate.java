@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -25,14 +26,11 @@ import java.util.List;
 public class MagmaCoreChestplate extends ArmorItem implements ICoreItem {
     private final CoreType coreType = CoreType.MAGMA;
 
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
-
     public MagmaCoreChestplate() {
         super(
                 ModArmorMaterial.MAGMA_CORE_ARMOR,
                 EquipmentSlotType.CHEST,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override
@@ -55,11 +53,6 @@ public class MagmaCoreChestplate extends ArmorItem implements ICoreItem {
     @Override
     public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
         coreType.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
-    }
-
-    @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        super.onArmorTick(stack, world, player);
     }
 
     @Override

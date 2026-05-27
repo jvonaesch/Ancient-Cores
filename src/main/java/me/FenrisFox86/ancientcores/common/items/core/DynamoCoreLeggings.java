@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -31,18 +32,11 @@ public class DynamoCoreLeggings extends ArmorItem {
 
     public static final ICoreType coreType = CoreType.DYNAMO;
 
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
-    public static final AttributeModifier SPEED_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":dynamo_core_legs:speed_boost",
-            1.5,
-            AttributeModifier.Operation.MULTIPLY_BASE);
-
     public DynamoCoreLeggings() {
         super(
                 ModArmorMaterial.DYNAMO_CORE_ARMOR,
                 EquipmentSlotType.LEGS,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override
@@ -73,7 +67,10 @@ public class DynamoCoreLeggings extends ArmorItem {
         if (slotType != super.getSlot()) {return super.getDefaultAttributeModifiers(slotType);}
         Multimap<Attribute, AttributeModifier> modifiers =
                 ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
-        modifiers.put(Attributes.MOVEMENT_SPEED, DynamoCoreLeggings.SPEED_MODIFIER);
+        modifiers.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(
+                AncientCores.MOD_ID + ":dynamo_core_legs:speed_boost",
+                1.5,
+                AttributeModifier.Operation.MULTIPLY_BASE));
         return modifiers;
     }
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -24,19 +25,11 @@ import java.util.List;
 public class MagmaCoreHelmet extends ArmorItem implements ICoreItem {
     private final CoreType coreType = CoreType.MAGMA;
 
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
-
-    public static final AttributeModifier HEALTH_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":magma_core_helmet:health_boost",
-            4.0,
-            AttributeModifier.Operation.ADDITION);
-
     public MagmaCoreHelmet() {
         super(
                 ModArmorMaterial.MAGMA_CORE_ARMOR,
                 EquipmentSlotType.HEAD,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override
@@ -72,7 +65,10 @@ public class MagmaCoreHelmet extends ArmorItem implements ICoreItem {
         if (slotType != super.getSlot()) {return super.getDefaultAttributeModifiers(slotType);}
         Multimap<Attribute, AttributeModifier> modifiers =
                 ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
-        modifiers.put(Attributes.MAX_HEALTH, MagmaCoreHelmet.HEALTH_MODIFIER);
+        modifiers.put(Attributes.MAX_HEALTH, new AttributeModifier(
+                AncientCores.MOD_ID + ":magma_core_helmet:health_boost",
+                4.0,
+                AttributeModifier.Operation.ADDITION));
         return modifiers;
     }
 }

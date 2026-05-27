@@ -1,10 +1,15 @@
 package me.FenrisFox86.ancientcores.common.items.core;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.items.TooltipUtil;
+import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
@@ -20,19 +25,11 @@ public class MagmaCoreLeggings extends ArmorItem implements ICoreItem {
 
     private final CoreType coreType = CoreType.MAGMA;
 
-    public static final Properties properties = new Properties()
-            .tab(AncientCores.MOD_TAB);
-
-    public static final AttributeModifier KNOCKBACK_RESISTANCE_MODIFIER = new AttributeModifier(
-            AncientCores.MOD_ID + ":magma_core_leggings:knockback_resistance_boost",
-            1.0,
-            AttributeModifier.Operation.ADDITION);
-
     public MagmaCoreLeggings() {
         super(
                 ModArmorMaterial.MAGMA_CORE_ARMOR,
                 EquipmentSlotType.LEGS,
-                properties);
+                ItemInit.defaultProperties());
     }
 
     @Override
@@ -53,6 +50,20 @@ public class MagmaCoreLeggings extends ArmorItem implements ICoreItem {
             @Nonnull ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         TooltipUtil.appendCoreItemHoverText(tooltip, "magma_core", "magma_core_leggings");
+    }
+
+    @Override
+    public @Nonnull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(
+            @Nonnull EquipmentSlotType slotType) {
+        if (slotType != super.getSlot()) {return super.getDefaultAttributeModifiers(slotType);}
+        Multimap<Attribute, AttributeModifier> modifiers =
+                ArrayListMultimap.create(super.getDefaultAttributeModifiers(slotType));
+        modifiers.removeAll(Attributes.KNOCKBACK_RESISTANCE);
+        modifiers.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(
+                AncientCores.MOD_ID + ":dynamo_core_chestplate:knockback_resistance_boost",
+                2.0,
+                AttributeModifier.Operation.MULTIPLY_BASE));
+        return modifiers;
     }
 }
 
