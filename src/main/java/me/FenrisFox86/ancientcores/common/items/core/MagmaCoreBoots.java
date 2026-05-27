@@ -7,6 +7,7 @@ import me.FenrisFox86.ancientcores.core.init.ItemInit;
 import me.FenrisFox86.ancientcores.core.util.tools.ModArmorMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
@@ -48,13 +49,18 @@ public class MagmaCoreBoots extends ArmorItem implements ICoreItem {
 
     @Override
     public void inventoryTick(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
+        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        super.onArmorTick(stack, world, player);
         MagmaWalkerLogic.replaceField(
                 BlockInit.MAGMA_FLOOR.get().defaultBlockState(),
-                entityIn.blockPosition().below(),
-                worldIn,
+                player.blockPosition().below(),
+                world,
                 3,
                 1);
-        core.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override
