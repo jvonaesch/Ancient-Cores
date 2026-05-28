@@ -4,7 +4,9 @@
     "item": "minecraft:netherrack"
   },
   "output": {
-    "item": "minecraft:soul_sand",
-    "count": 2
+    "item": "minecraft:quartz",
+    "min_count": 1,
+    "max_count": 3,
+    "chance": 0.2
   }
 }

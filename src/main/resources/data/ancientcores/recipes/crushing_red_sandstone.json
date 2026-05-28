@@ -1,0 +1,12 @@
+{
+  "type": "ancientcores:crushing",
+
+  "input": {
+    "item": "minecraft:red_sandstone"
+  },
+
+  "output": {
+    "item": "minecraft:red_sand",
+    "count": 2
+  }
+}

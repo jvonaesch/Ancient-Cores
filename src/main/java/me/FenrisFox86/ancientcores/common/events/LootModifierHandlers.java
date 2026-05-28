@@ -13,7 +13,8 @@ import javax.annotation.Nonnull;
 public class LootModifierHandlers {
 
     @SubscribeEvent
-    public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
+    public static void registerModifierSerializers(
+            @Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
         event.getRegistry().register(new ToolLootModifier.Serializer().setRegistryName(
                 new ResourceLocation(AncientCores.MOD_ID,"tool_modifier")));
     }

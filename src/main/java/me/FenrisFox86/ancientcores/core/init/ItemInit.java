@@ -90,8 +90,8 @@ public class ItemInit {
     RUBY = addItem("ruby"),
     SAPPHIRE = addItem("sapphire"),
     PYRITE = addItem("pyrite"),
-    LEAD = addItem("lead"),
-    TIN = addItem("tin"),
+    LEAD_INGOT = addItem("lead_ingot"),
+    TIN_INGOT = addItem("tin_ingot"),
     CASSITERITE = addItem("cassiterite"),
     GALENITE = addItem("galenite"),
 

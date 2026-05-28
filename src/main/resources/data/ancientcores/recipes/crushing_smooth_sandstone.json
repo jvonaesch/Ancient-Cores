@@ -1,0 +1,12 @@
+{
+  "type": "ancientcores:crushing",
+
+  "input": {
+    "item": "minecraft:smooth_sandstone"
+  },
+
+  "output": {
+    "item": "minecraft:sandstone",
+    "count": 2
+  }
+}

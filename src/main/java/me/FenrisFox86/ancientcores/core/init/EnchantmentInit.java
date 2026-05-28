@@ -2,6 +2,7 @@ package me.FenrisFox86.ancientcores.core.init;
 
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.enchantments.*;
+import me.FenrisFox86.ancientcores.common.items.HammerItem;
 import me.FenrisFox86.ancientcores.common.items.core.CoreType;
 import me.FenrisFox86.ancientcores.common.items.core.ICoreItem;
 import net.minecraft.enchantment.Enchantment;
@@ -32,7 +33,14 @@ public class EnchantmentInit {
                     && !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.MAGMA)));
     public static final EnchantmentType BREAKABLE_NON_DYNAMO = EnchantmentType.create(
             "breakable_non_dynamo", item -> (
-                    !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.DYNAMO)));
+                    item.canBeDepleted()
+                    && !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.DYNAMO)));
+    public static final EnchantmentType DIGGER_NON_HAMMER = EnchantmentType.create(
+            "digger_non_hammer", item -> (
+                    item instanceof net.minecraft.item.ShovelItem
+                    || item instanceof net.minecraft.item.PickaxeItem
+                    || item instanceof net.minecraft.item.HoeItem)
+                    && !(item instanceof HammerItem));
 
     //Enchantments
     public static final RegistryObject<Enchantment> DYNAMO_REPAIR = ENCHANTMENTS.register("dynamo_repair", ()
@@ -88,7 +96,7 @@ public class EnchantmentInit {
     public static final RegistryObject<Enchantment> CRUSHING = ENCHANTMENTS.register("crushing", ()
             -> new Crushing(
             Enchantment.Rarity.RARE,
-            EnchantmentType.DIGGER,
+            DIGGER_NON_HAMMER,
             new EquipmentSlotType[]{
                     EquipmentSlotType.MAINHAND
             }));

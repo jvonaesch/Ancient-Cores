@@ -2,23 +2,27 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "rir",
-    "ifi",
-    "rir"
+    "iii",
+    "cfc",
+    "rrr"
   ],
   "key":
   {
-    "r":
+    "c":
     {
-      "tag": "forge:rods/bronze"
+      "tag": "forge:ingots/copper"
     },
     "i":
     {
-      "tag": "forge:ingots/bronze"
+      "tag": "forge:ingots/iron"
     },
     "f":
     {
       "item": "minecraft:furnace"
+    },
+    "r":
+    {
+      "item": "minecraft:stone"
     }
   },
   "result":
