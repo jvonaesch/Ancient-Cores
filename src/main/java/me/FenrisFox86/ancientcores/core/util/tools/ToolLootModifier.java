@@ -43,9 +43,11 @@ public class ToolLootModifier extends LootModifier {
                 for (IRecipe<?> recipe : RecipeInit.getRecipes(recipe_type, context.getLevel().getRecipeManager()).values()) {
                     if (recipe.getIngredients().get(0).test(stack)) {
                         ItemStack result = recipe.getResultItem();
-                        /*if (result.isEmpty()) {
-                            continue;
-                        }*/
+
+                        if (result.isEmpty()) {
+                            generatedLoot.remove(stack);
+                            break;
+                        }
 
                         int f = result.getCount();
                         int count = stack.getCount();
@@ -58,9 +60,9 @@ public class ToolLootModifier extends LootModifier {
                                 generatedLoot.add(new ItemStack(item, maxStackSize));
                             }
                             generatedLoot.add(new ItemStack(item, final_count % maxStackSize));
-                            generatedLoot.remove(stack);
-                            break;
                         }
+                        generatedLoot.remove(stack);
+                        break;
                     }
                 }
             }
