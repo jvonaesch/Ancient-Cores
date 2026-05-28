@@ -29,6 +29,11 @@ public class DynamoCore extends Item implements ICoreItem {
     }
 
     @Override
+    public boolean isFoil(@Nonnull ItemStack stack) {
+        return core.isFoil();
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(
             @Nonnull ItemStack stack,

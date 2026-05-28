@@ -61,6 +61,11 @@ public class MagmaCore extends Item implements ICoreItem {
         return true;
     }
 
+    @Override
+    public boolean isFoil(@Nonnull ItemStack stack) {
+        return core.isFoil();
+    }
+
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         if (!event.getSource().isFire()) return;
