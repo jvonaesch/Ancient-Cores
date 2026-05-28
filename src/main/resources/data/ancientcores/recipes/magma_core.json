@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " c ",
+    "nsn",
+    " n "
+  ],
+  "key":
+  {
+    "s":
+    {
+      "item": "minecraft:nether_star"
+    },
+    "n":
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    "c":
+    {
+      "item": "ancientcores:core_vessel"
+    }
+  },
+  "result":
+  {
+    "item": "ancientcores:magma_core",
+    "count": 1
+  }
+}

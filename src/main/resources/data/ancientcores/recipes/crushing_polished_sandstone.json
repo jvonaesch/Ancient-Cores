@@ -1,0 +1,14 @@
+{
+  "type": "ancientcores:crushing",
+
+  "input": {
+    "item": "minecraft:polished_sandstone"
+  },
+
+  "output": {
+    "item": "minecraft:red_sand",
+    "min_count": 1,
+    "max_count": 4,
+    "chance": 1
+  }
+}

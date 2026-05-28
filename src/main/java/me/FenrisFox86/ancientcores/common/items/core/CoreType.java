@@ -98,7 +98,7 @@ public enum CoreType implements ICoreType {
                     boolean isSelected) {
                 if (worldIn.getGameTime() % 20 > 0) return;
                 if (!stack.getItem().canBeDepleted()) return;
-                if (!entityIn.isSprinting()) return;
+                if (!(entityIn.isSprinting() || entityIn.isDescending())) return;
                 if (!(entityIn instanceof LivingEntity)) return;
                 stack.hurtAndBreak(-1, (LivingEntity) entityIn, p ->
                         p.broadcastBreakEvent(Objects.requireNonNull(stack.getEquipmentSlot())));

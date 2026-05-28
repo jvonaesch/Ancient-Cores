@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " c ",
+    "ese",
+    " e "
+  ],
+  "key":
+  {
+    "s":
+    {
+      "item": "minecraft:nether_star"
+    },
+    "e":
+    {
+      "item": "ancientcores:essence_ingot"
+    },
+    "c":
+    {
+      "item": "ancientcores:core_vessel"
+    }
+  },
+  "result":
+  {
+    "item": "ancientcores:dynamo_core",
+    "count": 1
+  }
+}
