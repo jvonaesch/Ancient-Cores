@@ -6,7 +6,9 @@
   },
 
   "output": {
-    "item": "minecraft:sandstone",
-    "count": 2
+    "item": "minecraft:sand",
+    "min_count": 1,
+    "max_count": 4,
+    "chance": 1
   }
 }

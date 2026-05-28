@@ -1,7 +1,7 @@
 package me.FenrisFox86.ancientcores.core.util.tools;
 
-import me.FenrisFox86.ancientcores.core.init.RecipeInit;
 import com.google.gson.JsonObject;
+import me.FenrisFox86.ancientcores.core.init.RecipeInit;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -14,11 +14,11 @@ import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ToolLootModifier extends LootModifier {
 
@@ -38,22 +38,29 @@ public class ToolLootModifier extends LootModifier {
     @Override
     public List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
         if (this.recipe_type != null) {
-            ArrayList<ItemStack> old_loot = new ArrayList<ItemStack> (generatedLoot);
+            ArrayList<ItemStack> old_loot = new ArrayList<>(generatedLoot);
             for (ItemStack stack : old_loot) {
                 for (IRecipe<?> recipe : RecipeInit.getRecipes(recipe_type, context.getLevel().getRecipeManager()).values()) {
                     if (recipe.getIngredients().get(0).test(stack)) {
-                        int f = recipe.getResultItem().copy().getCount();
+                        ItemStack result = recipe.getResultItem();
+                        /*if (result.isEmpty()) {
+                            continue;
+                        }*/
+
+                        int f = result.getCount();
                         int count = stack.getCount();
                         int final_count = count * f;
-                        Item item = recipe.getResultItem().getItem();
+                        Item item = result.getItem();
+                        int maxStackSize = result.getMaxStackSize();
 
                         if (final_count > 0) {
-                            for (int i = 0; i < final_count / item.getMaxStackSize(); i++) {
-                                generatedLoot.add(new ItemStack(item, item.getMaxStackSize()));
+                            for (int i = 0; i < final_count / maxStackSize; i++) {
+                                generatedLoot.add(new ItemStack(item, maxStackSize));
                             }
-                            generatedLoot.add(new ItemStack(item, final_count%item.getMaxStackSize()));
+                            generatedLoot.add(new ItemStack(item, final_count % maxStackSize));
+                            generatedLoot.remove(stack);
+                            break;
                         }
-                        generatedLoot.remove(stack);
                     }
                 }
             }
@@ -110,7 +117,9 @@ public class ToolLootModifier extends LootModifier {
             if (instance.bonus_count != null) {
                 JsonObject bonus = new JsonObject();
                     bonus.addProperty("count", instance.bonus_count);
-                    bonus.addProperty("item", instance.bonus_item.toString());
+                    if (instance.bonus_item != null) {
+                        bonus.addProperty("item", instance.bonus_item.toString());
+                    }
                 action.add("bonus", bonus);
             }
             json.add("action", action);

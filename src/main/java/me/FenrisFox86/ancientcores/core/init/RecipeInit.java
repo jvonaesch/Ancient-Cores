@@ -15,20 +15,14 @@ import java.util.Map;
 public class RecipeInit {
 
     public static final IRecipeType<CrushingRecipe> CRUSHING_RECIPE = new RecipeType<CrushingRecipe>("crushing");
-    public static final IRecipeType<CrushingRecipe> SLASHING_RECIPE = new RecipeType<CrushingRecipe>("slashing");
-    public static final IRecipeType<CrushingRecipe> STABBING_RECIPE = new RecipeType<CrushingRecipe>("stabbing");
 
     public static final Map<IRecipeSerializer<?>, RecipeType<?>> RECIPE_MAP = new HashMap<IRecipeSerializer<?>, RecipeType<?>>() {};
 
     public static void registerRecipes(RegistryEvent.Register<IRecipeSerializer<?>> event) {
 
         RECIPE_MAP.put(CrushingRecipe.SERIALIZER, (RecipeType<?>) CRUSHING_RECIPE);
-        RECIPE_MAP.put(CrushingRecipe.SERIALIZER, (RecipeType<?>) SLASHING_RECIPE);
-        RECIPE_MAP.put(CrushingRecipe.SERIALIZER, (RecipeType<?>) STABBING_RECIPE);
 
         registerRecipe(event, CRUSHING_RECIPE, CrushingRecipe.SERIALIZER);
-        registerRecipe(event, SLASHING_RECIPE, CrushingRecipe.SERIALIZER);
-        registerRecipe(event, STABBING_RECIPE, CrushingRecipe.SERIALIZER);
     }
 
     private static void registerRecipe(
