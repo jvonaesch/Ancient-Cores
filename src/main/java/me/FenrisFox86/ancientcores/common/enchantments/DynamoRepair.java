@@ -27,13 +27,4 @@ public class DynamoRepair extends Enchantment {
         }
         return super.checkCompatibility(other);
     }
-
-    @Override
-    public boolean canEnchant(@Nonnull ItemStack stack) {
-        if (stack.getItem() instanceof ICoreItem && ((ICoreItem) stack.getItem()).getCoreType() == CoreType.DYNAMO) {
-            return false;
-        }
-        if (stack.getItem().isRepairable(stack)) return false;
-        return super.canEnchant(stack);
-    }
 }

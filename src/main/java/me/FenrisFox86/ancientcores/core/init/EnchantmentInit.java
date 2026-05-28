@@ -32,8 +32,7 @@ public class EnchantmentInit {
                     && !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.MAGMA)));
     public static final EnchantmentType BREAKABLE_NON_DYNAMO = EnchantmentType.create(
             "breakable_non_dynamo", item -> (
-                    item.canBeDepleted()
-                    && !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.DYNAMO)));
+                    !(item instanceof ICoreItem && ((ICoreItem)item).getCoreType() == CoreType.DYNAMO)));
 
     //Enchantments
     public static final RegistryObject<Enchantment> DYNAMO_REPAIR = ENCHANTMENTS.register("dynamo_repair", ()

@@ -1,5 +1,5 @@
 {
-  "itemGroup.basic_material_tab": "Fenris' RPG",
+  "itemGroup.basic_material_tab": "Ancient Cores",
 
   "tooltip.ancientcores.hold_shift": "§7Hold §e[Shift] §7for more information",
 
@@ -20,8 +20,8 @@
   "tooltip.ancientcores.magma_core_attack": "§o§eFire Bender: §r§7Normal attacks set enemies on fire for a long period of time.",
 
   "tooltip.ancientcores.core_vessel_items": "§o§7Core Vessel: Add a core to a vessel in the smithing table to give it special powers.",
-  "tooltip.ancientcores.rayhans_cheese.lore":"§5Get me some Cheese! Yummy Cheese!",
-  "tooltip.ancientcores.rayhans_cheese.desc":"§o§7Taste a piece of OP Apple's new big bro.",
+  "tooltip.ancientcores.grays_cheese.lore":"§5Get me some Cheese! Yummy Cheese!",
+  "tooltip.ancientcores.grays_cheese.desc":"§o§7Taste a piece of OP Apple's new big bro.",
 
   "block.ancientcores.ruby_block": "Block of Ruby",
   "block.ancientcores.bronze_block": "Block of Bronze",

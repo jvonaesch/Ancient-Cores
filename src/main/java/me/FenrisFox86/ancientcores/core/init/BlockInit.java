@@ -46,7 +46,7 @@ public class BlockInit {
         BRONZE_BLOCK = addBlock("bronze_block", new BronzeBlock()),
         SILVER_BLOCK = addBlock("silver_block", new SilverBlock()),
         SAPPHIRE_BLOCK = addBlock("sapphire_block", new SapphireBlock()),
-        ESSENCE_BLOCK = addBlock("essence_block", new EssenceBlock()),
+        // ESSENCE_BLOCK = addBlock("essence_block", new EssenceBlock()),
 
         DOLOMITE = addBlock("dolomite", new DolomiteBlock()),
         DOLOMITE_SAND = addBlock("dolomite_sand", new DolomiteSandBlock()),

@@ -152,22 +152,22 @@ public class ItemInit {
     BRONZE_ROD = addItem("bronze_rod"),
     GOLD_ROD = addItem("gold_rod"),
 
-    RAYHANS_CHEESE = addItem("rayhans_cheese", new ItemBase((new Item.Properties()).tab(AncientCores.MOD_TAB)
-            .rarity(Rarity.EPIC).food(ModFoods.RAYHANS_CHEESE)).foilEffect().description("tooltip.ancientcores.rayhans_cheese.lore")
-            .description("tooltip.ancientcores.rayhans_cheese.desc"));
+    GRAYS_CHEESE = addItem("grays_cheese", new ItemBase((new Item.Properties()).tab(AncientCores.MOD_TAB)
+            .rarity(Rarity.EPIC).food(ModFoods.RAYHANS_CHEESE)).foilEffect().description("tooltip.ancientcores.grays_cheese.lore")
+            .description("tooltip.ancientcores.grays_cheese.desc"));
 
     public static final Map<String, RegistryObject<Item>>
         RUBY_TOOLSET = addToolSet("ruby", ModItemTier.RUBY),
         SAPPHIRE_TOOLSET = addToolSet("sapphire", ModItemTier.SAPPHIRE),
         BRONZE_TOOLSET = addToolSet("bronze", ModItemTier.BRONZE),
         SILVER_TOOLSET = addToolSet("silver", ModItemTier.SILVER),
-        ESSENCE_TOOLSET = addToolSet("essence", ModItemTier.ESSENCE),
+        // ESSENCE_TOOLSET = addToolSet("essence", ModItemTier.ESSENCE),
 
         RUBY_ARMOR_SET = addArmorSet("ruby", ModArmorMaterial.RUBY_ARMOR),
         SAPPHIRE_ARMOR_SET = addArmorSet("sapphire", ModArmorMaterial.SAPPHIRE_ARMOR),
         BRONZE_ARMOR_SET = addArmorSet("bronze", ModArmorMaterial.BRONZE_ARMOR),
         SILVER_ARMOR_SET = addArmorSet("silver", ModArmorMaterial.SILVER_ARMOR),
-        ESSENCE_ARMOR_SET = addArmorSet("essence", ModArmorMaterial.ESSENCE_ARMOR),
+        // ESSENCE_ARMOR_SET = addArmorSet("essence", ModArmorMaterial.ESSENCE_ARMOR),
 
         WOOD_TOOLSET = completeToolSet("wood", ItemTier.WOOD, null),
         STONE_TOOLSET = completeToolSet("stone", ItemTier.STONE, null),

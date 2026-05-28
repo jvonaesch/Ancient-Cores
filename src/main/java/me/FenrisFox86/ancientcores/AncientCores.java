@@ -61,9 +61,6 @@ public class AncientCores {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         LOGGER.debug("mod rendering setup");
-        RenderTypeLookup.setRenderLayer(
-                BlockInit.ESSENCE_BLOCK.get(),
-                RenderType.translucent());
     }
 
     public static final ItemGroup MOD_TAB = new ItemGroup("basic_material_tab") {
