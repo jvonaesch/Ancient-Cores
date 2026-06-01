@@ -92,8 +92,8 @@ public class ItemInit {
     PYRITE = addItem("pyrite"),
     LEAD_INGOT = addItem("lead_ingot"),
     TIN_INGOT = addItem("tin_ingot"),
-    CASSITERITE = addItem("cassiterite"),
-    GALENITE = addItem("galenite"),
+    TIN_ORE = addItem("tin_ore"),
+    LEAD_ORE = addItem("lead_ore"),
 
     CORE_VESSEL = addItem("core_vessel"),
     CORE_VESSEL_HELMET = addItem("core_vessel_helmet", new DescriptionItemBase("tooltip.ancientcores.core_vessel_items")),

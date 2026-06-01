@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "ancientcores:block/cassiterite_block"
+    "all": "ancientcores:block/lead_ore_block"
   }
 }

@@ -16,23 +16,18 @@ public enum ModItemTier implements IItemTier {
     SAPPHIRE(3, 2003, 9.0F, 3.0F, 21, () -> {
         return Ingredient.of(ItemInit.SAPPHIRE.get());
     }),
-
     ESSENCE(4, 2135, 10.0F, 6.0f, 24, () -> {
         return Ingredient.of(ItemInit.ESSENCE.get());
     }),
-
-    BRONZE(2, 264, 5.0F, 3.0F, 12, () -> {
+    BRONZE(2, 150, 7.0F, 2.0F, 18, () -> {
         return Ingredient.of(ItemInit.BRONZE_INGOT.get());
     }),
-
-    SILVER(2, 264, 6.0F, 3.0F, 24, () -> {
+    SILVER(2, 200, 6.0F, 3.0F, 24, () -> {
         return Ingredient.of(ItemInit.SILVER_INGOT.get());
     }),
-
     RUBY_CORE(3, 1000, 8.0F, 3.0F, 28, () -> {
         return Ingredient.of(ItemInit.RUBY.get());
     }),
-
     DYNAMO_CORE(5, 2604, 10.0F, 5.0F, 36, () -> {
         return Ingredient.of(ItemInit.DYNAMO_CORE.get());
     }),

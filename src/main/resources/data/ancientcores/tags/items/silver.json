@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "ancientcores:silver_helmet",
+    "ancientcores:silver_chestplate",
+    "ancientcores:silver_leggings",
+    "ancientcores:silver_boots",
+    "ancientcores:silver_sword",
+    "ancientcores:silver_axe",
+    "ancientcores:silver_pickaxe",
+    "ancientcores:silver_hoe",
+    "ancientcores:silver_shovel",
+    "ancientcores:silver_hammer",
+    "ancientcores:silver_dagger",
+    "ancientcores:silver_broadsword",
+    "ancientcores:silver_ingot",
+    "ancientcores:silver_nugget",
+    "ancientcores:silver_rod"
+  ]
+}

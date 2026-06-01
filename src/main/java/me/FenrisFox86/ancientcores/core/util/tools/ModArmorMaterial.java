@@ -27,16 +27,21 @@ public enum ModArmorMaterial implements IArmorMaterial {
             SoundEvents.ARMOR_EQUIP_GOLD,
             5.0f,0.2f,
             () -> Ingredient.of(ItemInit.ESSENCE.get())),
-    BRONZE_ARMOR("bronze", 10, new int[] {2, 4, 5, 2},
+
+    // slightly more enchantable than iron, lower durability, slightly more knockback-resistance
+    BRONZE_ARMOR("bronze", 10, new int[] {2, 5, 6, 2},
             ModItemTier.BRONZE.getEnchantmentValue(),
             SoundEvents.ARMOR_EQUIP_IRON,
-            0.0f,0.0f,
+            0.0f,1.0f,
             () -> Ingredient.of(ItemInit.BRONZE_INGOT.get())),
+
+    // More enchantable than iron, lower durability, low toughness value
     SILVER_ARMOR("silver", 11, new int[] {2, 5, 6, 2},
             ModItemTier.SILVER.getEnchantmentValue(),
             SoundEvents.ARMOR_EQUIP_IRON,
-            0.0f,0.0f, () ->
+            0.5f,0.0f, () ->
             Ingredient.of(ItemInit.SILVER_INGOT.get())),
+
     RUBY_CORE_ARMOR("ruby_core", 27, new int[] {2, 5, 7, 3},
             ModItemTier.RUBY_CORE.getEnchantmentValue(),
             SoundEvents.ARMOR_EQUIP_IRON,

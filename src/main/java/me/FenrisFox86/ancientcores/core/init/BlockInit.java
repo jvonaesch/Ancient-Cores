@@ -2,7 +2,6 @@ package me.FenrisFox86.ancientcores.core.init;
 
 import me.FenrisFox86.ancientcores.AncientCores;
 import me.FenrisFox86.ancientcores.common.blocks.*;
-import me.FenrisFox86.ancientcores.common.blocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -61,9 +60,9 @@ public class BlockInit {
                 3, ToolType.PICKAXE, SoundType.STONE, 10)),
         SAPPHIRE_ORE_BLOCK = addBlock("sapphire_ore", new OreBlockBase(Material.STONE, 5.0F, 6.0F,
                 3, ToolType.PICKAXE, SoundType.STONE, 10)),
-        CASSITERITE_BLOCK = addBlock("cassiterite_block", new OreBlockBase(Material.STONE, 4.0F, 4.0F,
+        TIN_ORE_BLOCK = addBlock("tin_ore_block", new OreBlockBase(Material.STONE, 4.0F, 4.0F,
                 2, ToolType.PICKAXE, SoundType.STONE, 10)),
-        GALENITE_BLOCK = addBlock("galenite_block", new OreBlockBase(Material.STONE, 4.0F, 4.0F,
+        LEAD_ORE_BLOCK = addBlock("lead_ore_block", new OreBlockBase(Material.STONE, 4.0F, 4.0F,
                 2, ToolType.PICKAXE, SoundType.STONE, 10)),
         ESSENCE_ORE_BLOCK = addBlock("essence_ore", new EssenceOreBlock()),
 

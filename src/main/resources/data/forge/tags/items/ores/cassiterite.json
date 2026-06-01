@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ancientcores:cassiterite_block",
-    "ancientcores:cassiterite"
+    "ancientcores:tin_ore_block",
+    "ancientcores:tin_ore"
   ]
 }
