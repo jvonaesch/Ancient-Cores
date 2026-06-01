@@ -5,7 +5,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
 import net.minecraft.world.gen.feature.template.RuleTest;
@@ -29,15 +31,15 @@ public class OreGeneration {
 
             generateBlock(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
                     BlockInit.TIN_ORE_BLOCK.get().defaultBlockState(),
-                    8, 0, 69, 20);
+                    8, 0, 48, 15);
 
-            /*generateBlock(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                    BlockInit.GALENITE_BLOCK.get().defaultBlockState(),
-                    8, 0, 69, 20);*/
+            generateBlock(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+                    BlockInit.LEAD_ORE_BLOCK.get().defaultBlockState(),
+                    8, 0, 48, 20);
 
             generateBlock(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
                     BlockInit.SILVER_ORE_BLOCK.get().defaultBlockState(),
-                    10, 0, 40, 10);
+                    10, 0, 32, 10);
 
             generateBlock(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
                     BlockInit.RUBY_ORE_BLOCK.get().defaultBlockState(),
@@ -53,12 +55,12 @@ public class OreGeneration {
 
             generateBlock(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
                     BlockInit.DOLOMITE.get().defaultBlockState(),
-                    30, 0, 255, 20);
+                    24, 0, 255, 20);
 
         } else if (event.getCategory().equals(Biome.Category.THEEND)) {
             generateBlock(event.getGeneration(), new BlockMatchRuleTest(Blocks.END_STONE),
                     BlockInit.ESSENCE_ORE_BLOCK.get().defaultBlockState(),
-                    3, 24, 28, 10);
+                    3, 24, 28, 5);
         }
     }
     private static void generateBlock(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
