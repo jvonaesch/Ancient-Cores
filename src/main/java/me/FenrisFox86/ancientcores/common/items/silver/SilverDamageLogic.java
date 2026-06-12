@@ -1,16 +1,15 @@
 package me.FenrisFox86.ancientcores.common.items.silver;
 
 import me.FenrisFox86.ancientcores.AncientCores;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.apache.logging.log4j.LogManager;
 
 @Mod.EventBusSubscriber(modid = AncientCores.MOD_ID)
 public class SilverDamageLogic {
@@ -19,7 +18,7 @@ public class SilverDamageLogic {
     private static final float SILVER_BONUS_DAMAGE = 2.5F;
 
     @SubscribeEvent
-    public static void onSilverDamage(LivingAttackEvent event) {
+    public static void onSilverDamage(LivingHurtEvent event) {
         Entity sourceEntity = event.getSource().getEntity();
         if (!(sourceEntity instanceof LivingEntity)) return;
 
@@ -28,10 +27,11 @@ public class SilverDamageLogic {
 
         if (attacker.level.isClientSide) return;
         if (attacker == target) return;
+
+        if (target.getMobType() != CreatureAttribute.UNDEAD) return;
         if (!attacker.getMainHandItem().getItem().is(SILVER_WEAPONS)) return;
 
-        LogManager.getLogger().debug("silver weapon hit: applying bonus damage to " + target.getName().getString());
-        // LivingAttackEvent does not expose mutable base damage, so apply bonus as a second hit.
-        target.hurt(DamageSource.MAGIC, SILVER_BONUS_DAMAGE);
+        // LivingHurtEvent exposes a mutable damage amount; increase it instead of applying a second hit.
+        event.setAmount(event.getAmount() + SILVER_BONUS_DAMAGE);
     }
 }
