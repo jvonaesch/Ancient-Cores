@@ -22,7 +22,7 @@ public enum ModItemTier implements IItemTier {
     BRONZE(2, 150, 7.0F, 2.0F, 18, () -> {
         return Ingredient.of(ItemInit.BRONZE_INGOT.get());
     }),
-    SILVER(2, 200, 6.0F, 3.0F, 24, () -> {
+    SILVER(2, 200, 6.0F, 2.0F, 24, () -> {
         return Ingredient.of(ItemInit.SILVER_INGOT.get());
     }),
     RUBY_CORE(3, 1000, 8.0F, 3.0F, 28, () -> {

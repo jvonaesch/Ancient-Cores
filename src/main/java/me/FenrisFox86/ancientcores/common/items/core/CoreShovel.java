@@ -23,7 +23,7 @@ public class CoreShovel extends ShovelItem implements ICoreItem {
 
     public final ICoreType core;
 
-    public CoreShovel(ICoreType core, int attackDamageIn, float attackSpeedIn) {
+    public CoreShovel(ICoreType core, float attackDamageIn, float attackSpeedIn) {
         super(
                 core.getItemTier(),
                 attackDamageIn,

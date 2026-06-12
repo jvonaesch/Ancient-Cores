@@ -41,15 +41,21 @@ public class ItemInit {
     public static Map<String, RegistryObject<Item>> addToolSet(String name, IItemTier tier) {
         Map<String, RegistryObject<Item>> MAP = new HashMap() {};
         MAP.put("SWORD", addItem(name + "_sword", new SwordItem(
-                tier, 2, -1.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier, 3, -2.4F, new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("AXE", addItem(name + "_axe", new AxeItem(
-                tier, 3, -2.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier,
+                tier.getLevel() <= 0 ? 6 : tier.getLevel() == 1 ? 7 : tier.getLevel() == 2 ? 6 : 5,
+                tier.getLevel() <= 1 ? -3.2F : tier.getLevel() == 2 ? -3.1F : -3.0F,
+                new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("PICKAXE", addItem(name + "_pickaxe", new PickaxeItem(
-                tier, 2, -2.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier, 1, -2.8F, new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("SHOVEL", addItem(name + "_shovel", new ShovelItem(
-                tier, 1, -2.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier, 1.5F, -3.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("HOE", addItem(name + "_hoe", new HoeItem(
-                tier, 0, -2.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier,
+                tier.getLevel() <= 0 ? 0 : tier.getLevel() == 1 ? -1 : tier.getLevel() == 2 ? -2 : -3,
+                tier.getLevel() <= 0 ? -3.0F : tier.getLevel() == 1 ? -2.0F : tier.getLevel() == 2 ? -1.0F : 0.0F,
+                new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP = completeToolSet(name, tier, MAP);
 
         return MAP;
@@ -59,11 +65,14 @@ public class ItemInit {
         Map<String, RegistryObject<Item>> MAP = map;
         if (map == null) { MAP = new HashMap() {}; }
         MAP.put("HAMMER", addItem(name+ "_hammer", new HammerItem(
-                tier, 4, -1.5F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier,
+                tier.getLevel() <= 0 ? 6 : tier.getLevel() == 1 ? 7 : tier.getLevel() == 2 ? 6 : 5,
+                tier.getLevel() <= 1 ? -3.2F : tier.getLevel() == 2 ? -3.1F : -3.0F,
+                new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("DAGGER", addItem(name+ "_dagger", new SingleHandedSwordItem(
-                tier, 0, -1.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier, 3, -2.4F, new Item.Properties().tab(AncientCores.MOD_TAB))));
         MAP.put("BROADSWORD", addItem(name+ "_broadsword", new BroadswordItem(
-                tier, 6, -3.0F, new Item.Properties().tab(AncientCores.MOD_TAB))));
+                tier, 3, -2.4F, new Item.Properties().tab(AncientCores.MOD_TAB))));
 
         return map;
     }
@@ -114,28 +123,28 @@ public class ItemInit {
     DYNAMO_CHESTPLATE = addItem("dynamo_core_chestplate", new DynamoCoreChestplate()),
     DYNAMO_LEGGINGS = addItem("dynamo_core_leggings", new DynamoCoreLeggings()),
     DYNAMO_BOOTS = addItem("dynamo_core_boots", new DynamoCoreBoots()),
-    DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword(CoreType.DYNAMO, 2, -1.0F)),
-    DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe(CoreType.DYNAMO, 3, -2.0F)),
-    DYNAMO_PICKAXE = addItem("dynamo_core_pickaxe", new CorePickaxe(CoreType.DYNAMO, 2, -2.0F)),
-    DYNAMO_SHOVEL = addItem("dynamo_core_shovel", new CoreShovel(CoreType.DYNAMO, 1, -2.0F)),
-    DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe(CoreType.DYNAMO, 0, -2.0F)),
-    DYNAMO_HAMMER = addItem("dynamo_core_hammer", new CoreHammer(CoreType.DYNAMO, 4, -1.5F)),
-    DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger(CoreType.DYNAMO, 0, -1.0F)),
-    DYNAMO_BROADSWORD = addItem("dynamo_core_broadsword", new CoreBroadsword(CoreType.DYNAMO, 6, -3.0F)),
+    DYNAMO_SWORD = addItem("dynamo_core_sword", new CoreSword(CoreType.DYNAMO, 3, -2.4F)),
+    DYNAMO_AXE = addItem("dynamo_core_axe", new CoreAxe(CoreType.DYNAMO, 6, -3.1F)),
+    DYNAMO_PICKAXE = addItem("dynamo_core_pickaxe", new CorePickaxe(CoreType.DYNAMO, 1, -2.8F)),
+    DYNAMO_SHOVEL = addItem("dynamo_core_shovel", new CoreShovel(CoreType.DYNAMO, 1.5F, -3.0F)),
+    DYNAMO_HOE = addItem("dynamo_core_hoe", new CoreHoe(CoreType.DYNAMO, -2, -1.0F)),
+    DYNAMO_HAMMER = addItem("dynamo_core_hammer", new CoreHammer(CoreType.DYNAMO, 6, -3.1F)),
+    DYNAMO_DAGGER = addItem("dynamo_core_dagger", new CoreDagger(CoreType.DYNAMO, 3, -2.4F)),
+    DYNAMO_BROADSWORD = addItem("dynamo_core_broadsword", new CoreBroadsword(CoreType.DYNAMO, 3, -2.4F)),
 
     MAGMA_CORE = addItem("magma_core", new MagmaCore()),
     MAGMA_HELMET = addItem("magma_core_helmet", new MagmaCoreHelmet()),
     MAGMA_CHESTPLATE = addItem("magma_core_chestplate", new MagmaCoreChestplate()),
     MAGMA_LEGGINGS = addItem("magma_core_leggings", new MagmaCoreLeggings()),
     MAGMA_BOOTS = addItem("magma_core_boots", new MagmaCoreBoots()),
-    MAGMA_SWORD = addItem("magma_core_sword", new CoreSword(CoreType.MAGMA, 2, -1.0F)),
-    MAGMA_AXE = addItem("magma_core_axe", new CoreAxe(CoreType.MAGMA, 3, -2.0F)),
-    MAGMA_PICKAXE = addItem("magma_core_pickaxe", new CorePickaxe(CoreType.MAGMA, 2, -2.0F)),
-    MAGMA_SHOVEL = addItem("magma_core_shovel", new CoreShovel(CoreType.MAGMA, 1, -2.0F)),
-    MAGMA_HOE = addItem("magma_core_hoe", new CoreHoe(CoreType.MAGMA, 0, -2.0F)),
-    MAGMA_HAMMER = addItem("magma_core_hammer", new CoreHammer(CoreType.MAGMA, 4, -1.5F)),
-    MAGMA_DAGGER = addItem("magma_core_dagger", new CoreDagger(CoreType.MAGMA, 0, -1.0F)),
-    MAGMA_BROADSWORD = addItem("magma_core_broadsword", new CoreBroadsword(CoreType.MAGMA, 6, -3.0F)),
+    MAGMA_SWORD = addItem("magma_core_sword", new CoreSword(CoreType.MAGMA, 3, -2.4F)),
+    MAGMA_AXE = addItem("magma_core_axe", new CoreAxe(CoreType.MAGMA, 6, -3.1F)),
+    MAGMA_PICKAXE = addItem("magma_core_pickaxe", new CorePickaxe(CoreType.MAGMA, 1, -2.8F)),
+    MAGMA_SHOVEL = addItem("magma_core_shovel", new CoreShovel(CoreType.MAGMA, 1.5F, -3.0F)),
+    MAGMA_HOE = addItem("magma_core_hoe", new CoreHoe(CoreType.MAGMA, -2, -1.0F)),
+    MAGMA_HAMMER = addItem("magma_core_hammer", new CoreHammer(CoreType.MAGMA, 6, -3.1F)),
+    MAGMA_DAGGER = addItem("magma_core_dagger", new CoreDagger(CoreType.MAGMA, 3, -2.4F)),
+    MAGMA_BROADSWORD = addItem("magma_core_broadsword", new CoreBroadsword(CoreType.MAGMA, 3, -2.4F)),
 
     BRONZE_INGOT = addItem("bronze_ingot"),
     BRONZE_NUGGET = addItem("bronze_nugget"),
